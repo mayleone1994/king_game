@@ -1,0 +1,1358 @@
+fileFormatVersion: 2
+guid: 7d991187377b40d49a92394757a3e37b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b96ffaabba594b24e91bc7156b4a1316
+      internalID: 663572228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 612fdd454378f7147bae72df0f0ebd7a
+      internalID: 1282382305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_2
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 919002fc3266dda4384ad5d933a9d35b
+      internalID: -1774907142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_3
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbfa3ffcffcfc674cad2008dedbd9f57
+      internalID: 1106087406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_4
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e0a2999763dce641a68f3d36f54b289
+      internalID: 765232324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_5
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7aa6d5f7b3b5cb4991dad0fcf452208
+      internalID: 2120143551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_6
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb6bc1505abfdcb41ab91457efc4c83d
+      internalID: -1610969111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_7
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14ac6b84e59e86d4b98dd354bec924fa
+      internalID: -218312297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_8
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 796137609b8d07c45b0570b6d4d16c0c
+      internalID: 1221987998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_9
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29e2801517464984fb634e1a415badf7
+      internalID: -84660492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_10
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44baa72c69cf19e42834d41b958fee7b
+      internalID: 709526977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_11
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdf5fda8e1aeeac49be49914ade63bfc
+      internalID: -810497331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_12
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 492
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef59ee7385f1ff94b982e57bba5b79f8
+      internalID: -133999566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 664fffd18ef2260488f056774942e496
+      internalID: -1139113382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_14
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5953973fba7aa1439c28bd4d806e9c2
+      internalID: 254625561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_15
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfa682694c392df4b9bc8ce6adeac218
+      internalID: -888030304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_16
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ea95a3afe24eb04aa68832d4b3d99ef
+      internalID: 981124623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_17
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d8d892ded17af548a04748e84957cdc
+      internalID: 1229518155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_18
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 162a38104ffa414469d4361076fca924
+      internalID: 2063032144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_19
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f93dfac86be5145bd83da12bf04abd
+      internalID: -1674991602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_20
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63733dfad3d55214c8ab2730cfc12ee3
+      internalID: -76288557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_21
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 815b5c3a3893f6d4f9459556fa93af42
+      internalID: -2070028977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_22
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa842991775f044a836d4507480c2f0
+      internalID: -277087389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_23
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 489010ca53e1c9548bebe6fc7c4507dd
+      internalID: -1591136906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_24
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b03c6992ce9ee7d48ab00a3a750bcbb0
+      internalID: 1435270452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_25
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 369
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dde1594b4411bb1429251f3a92183bc4
+      internalID: 4784358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6166ffb73aa5f03448ea324b97706d5f
+      internalID: 661253888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_27
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad8105383e3cb914aa772aaed7e03530
+      internalID: -1488399658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_28
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a4c95320ef34b14baccf19e3fd61b50
+      internalID: 454029450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_29
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd20d5929fa830745925db77c3bf9938
+      internalID: 189549507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_30
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a239b60a6647e02419ec17b6c888f7a0
+      internalID: 2028042925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_31
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0111b5aafd30e7146a67dd8096b4a55c
+      internalID: 1988600136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_32
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce41b31ea8b06cb45b69ca6eade70bf3
+      internalID: 703177877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_33
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 229396057fec60c42a66f7c09257ec57
+      internalID: -1762518042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_34
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1afa2de72fd970341b99543ceb38c745
+      internalID: -801734460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_35
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b99458ae0256e7e4aa6d61284858991e
+      internalID: 503099777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_36
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 781e1c95d97448c4e9b8a3375da5f776
+      internalID: -332379003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_37
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d16fd90142bb1544a9510509e3b25533
+      internalID: -673542279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_38
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 246
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e5191e4284d8cb4ca5105fbc45b6db4
+      internalID: 1269929081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6ecfe55f15c1df4681bfdf36ae21a44
+      internalID: 125978020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_40
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5837175254fc82c4f9d2f59bc07c1465
+      internalID: 915033379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_41
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2d897511ee80c448b82437b37f8d608
+      internalID: -1484180320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_42
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a82f9f7cd2fc84f8a19baa2b7bc342
+      internalID: -270155404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_43
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92487bf53c5e4d9479e01852a57af764
+      internalID: 1820993519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_44
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3e3dba729728c49a40567b39a43660
+      internalID: -1203443109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_45
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e265ac54f7b629438c825002beac094
+      internalID: -1112094670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_46
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d820d5781312768419d0443aaf3d12f0
+      internalID: -897323153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_47
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b427b46a469e6a542a36e1404c96218a
+      internalID: 1295180781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_48
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8fbe3ea8f95ebb4588ebce1a9307c7b
+      internalID: 291813794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_49
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2599f1169cbb7846bb598bb89ffb97e
+      internalID: -1444766874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_50
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7707e6f8f81978c42894e83dc2b8aafa
+      internalID: 1040097042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_51
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 123
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc80a85e393b1264cb2938c9b3328b34
+      internalID: -1305829653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5c937d7340620447865ae1052fbed7a
+      internalID: -42093420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_53
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 0
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d80918a8d0763cf47a5e00129e6a52b8
+      internalID: -563825602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_54
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 0
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfb0f58c9b0c7844eb99eab91a3b1887
+      internalID: 1187047330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_35: 503099777
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_25: 4784358
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_49: -1444766874
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_26: 661253888
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_44: -1203443109
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_20: -76288557
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_30: 2028042925
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_19: -1674991602
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_28: 454029450
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_47: 1295180781
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_5: 2120143551
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_37: -673542279
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_33: -1762518042
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_40: 915033379
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_38: 1269929081
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_4: 765232324
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_16: 981124623
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_10: 709526977
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_36: -332379003
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_43: 1820993519
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_42: -270155404
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_8: 1221987998
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_32: 703177877
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_34: -801734460
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_1: 1282382305
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_22: -277087389
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_11: -810497331
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_3: 1106087406
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_48: 291813794
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_53: -563825602
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_54: 1187047330
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_9: -84660492
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_52: -42093420
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_2: -1774907142
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_51: -1305829653
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_39: 125978020
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_7: -218312297
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_45: -1112094670
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_31: 1988600136
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_0: 663572228
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_29: 189549507
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_41: -1484180320
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_13: -1139113382
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_24: 1435270452
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_15: -888030304
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_17: 1229518155
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_27: -1488399658
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_12: -133999566
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_46: -897323153
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_21: -2070028977
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_50: 1040097042
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_6: -1610969111
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_14: 254625561
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_18: 2063032144
+      imgbin_blackjack-0-playing-card-standard-52-card-deck-card-game-png_23: -1591136906
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
