@@ -21,7 +21,7 @@ public class CardsControllers : MonoBehaviour
         {
             var currCard = deckController.Deck.Pop();
 
-            CardData card = new(currCard, deckController.GetCurrentDeckVerse(), true);
+            CardData card = new(currCard, deckController.GetCurrentDeckVerse(), isMainPlayer);
 
             CardViewer cardViewer = Instantiate(prefab, playerViewer.RectTransform.transform);
 
