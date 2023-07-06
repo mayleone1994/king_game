@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace KingGame
@@ -6,16 +7,24 @@ namespace KingGame
     {
         private const string SAVE_KEY = "SAVED KEY";
 
+        private List<CardData> _cards;
+
         public readonly long ID; // TODO: became this unique
         public readonly string Name;
         public readonly Sprite Picture;
         public int Wins => GetWinsValue();
+        public List<CardData> Cards => _cards;
 
         public PlayerData(string name, Sprite picture, long id)
         {
             Name = name;
             Picture = picture;
             ID = id;
+        }
+
+        public void SetCards(List<CardData> cards)
+        {
+            _cards = cards;
         }
 
         public void AddWinValue()

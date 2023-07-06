@@ -9,14 +9,16 @@ namespace KingGame
         public readonly CardSuit Suit;
         public readonly CardValue Value;
         public readonly bool IsMainPlayer;
+        public readonly Sprite VerseSprite;
 
-        public CardData(CardDataSO data, bool isMainPlayer)
+        public CardData(CardDataSO data, Sprite verseSprite, bool isMainPlayer)
         {
             Name = data.name;
             Sprite = data.Sprite;
             Suit = data.Suit;
             Value = data.Value;
             IsMainPlayer = isMainPlayer;
+            VerseSprite = verseSprite;
         }
     }
 }

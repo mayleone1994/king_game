@@ -1,4 +1,6 @@
 public class GameConstants
 {
-    public const uint CARDS_PER_PLAYER = 13;
+    public const int CARDS_PER_PLAYER = 13;
+
+    public const int MAX_PLAYERS = 4;
 }

@@ -5,87 +5,68 @@ using UnityEngine;
 
 public class Initializer : MonoBehaviour
 {
-    private UIReferences _references;
 
-    private List<CardViewer> _cards = new List<CardViewer>();
+    // Dependencies:
+
+    [SerializeField] private DeckController _deckController;
+    [SerializeField] private PlayersController _playersController;
+    [SerializeField] private CardsControllers _cardsController;
 
     private void Awake()
     {
-        _references = FindObjectOfType<UIReferences>();
-
-        if (_references != null)
-            InitGame();
-        else
-            ShowInitError($"{nameof(_references)} is null or not found");
+        InitGame();
     }
 
     private void InitGame()
     {
-        _cards.Clear();
+        InitPlayers();
+    }
 
-        if (!_references.DeckController.HasDeck())
+    private void InitPlayers()
+    {
+        if(_playersController == null)
+        {
+            ShowInitError("Players controller not found");
+            return;
+        }
+
+        _playersController.InitPlayers();
+
+        InitDeck();
+    }
+
+    private void InitDeck()
+    {
+        if (_deckController == null || !_deckController.HasDeck())
         {
             ShowInitError("The current deck was not found");
             return;
         }
 
-        ShuffleDeck();
+        _deckController.ShuffleDeck();
 
-        if (_references.PlayerContainers == null || _references.PlayerContainers.GetContainersCount == 0)
+        InitCards();
+    }
+
+    private void InitCards()
+    {
+        if(_cardsController == null)
         {
-            ShowInitError($"{nameof(_references.PlayerContainers)} is null or containers is equals to 0");
+            ShowInitError("Cards controller was not found");
             return;
         }
 
-        PopulateContainers();
-
+       for (int i = 0; i < _playersController.PlayersViewer.Length; i++)
+        {
+            PlayerViewer playerViewer = _playersController.PlayersViewer[i];
+            _cardsController.CreateCardsForPlayer(playerViewer, _deckController, i == 0);
+        }
     }
 
     public void RestartGame()
     {
-        foreach (var card in _cards)
-        {
-            if (card != null)
-                card.DestroyCard();
-        }
-
-        InitGame();
-    }
-
-    private void ShuffleDeck()
-    {
-        _references.DeckController.ShuffleDeck();
-    }
-
-    private void PopulateContainers()
-    {
-        PlayerContainerController playerContainers = _references.PlayerContainers;
-
-        int containersCount = playerContainers.GetContainersCount;
-
-        for (int i = 0; i < containersCount; i++)
-        {
-            CreateCards(i, playerContainers.GetContainerByIndex(i));
-        }
-    }
-
-    private void CreateCards(int index, Transform container)
-    {
-        CardViewer prefab = _references.PrefabsController?.GetPrefab(
-    PrefabKey.CARD_VIEWER)?.GetComponent<CardViewer>();
-
-        for (int i = 0; i < GameConstants.CARDS_PER_PLAYER; i++)
-        {
-            var currCard = _references.DeckController.Deck.Pop();
-
-            CardData card = new(currCard, index == 0);
-
-            CardViewer cardViewer = Instantiate(prefab, container.transform);
-
-            cardViewer.SetData(card);
-
-            _cards.Add(cardViewer);
-        }
+        _cardsController?.DestroyCardsInstances();
+        InitDeck();
     }
 
     private void ShowInitError(string cause)
