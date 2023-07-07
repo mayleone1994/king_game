@@ -11,6 +11,7 @@ public class PlayerViewer : MonoBehaviour
     [SerializeField] private HorizontalLayoutGroup _cardsOnHand;
     [SerializeField] private RectTransform _selectedCardArea;
     [SerializeField] private TMP_Text _nameArea;
+    [SerializeField] private Canvas _canvas;
 
     private PlayerData _playerData;
 
@@ -19,6 +20,8 @@ public class PlayerViewer : MonoBehaviour
     public RectTransform RectTransform => this.GetComponent<RectTransform>();
 
     public RectTransform SelectedCardArea => _selectedCardArea;
+
+    public Canvas Canvas => _canvas;
 
     public void InitPlayerViewer(PlayerData playerData)
     {

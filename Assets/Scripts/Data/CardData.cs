@@ -10,8 +10,9 @@ namespace KingGame
         public readonly CardValue Value;
         public readonly bool IsMainPlayer;
         public readonly Sprite VerseSprite;
+        public readonly CardsControllers CardController;
 
-        public CardData(CardDataSO data, Sprite verseSprite, bool isMainPlayer)
+        public CardData(CardDataSO data, Sprite verseSprite, bool isMainPlayer, CardsControllers cardController)
         {
             Name = data.name;
             Sprite = data.Sprite;
@@ -19,6 +20,7 @@ namespace KingGame
             Value = data.Value;
             IsMainPlayer = isMainPlayer;
             VerseSprite = verseSprite;
+            CardController = cardController;
         }
     }
 }

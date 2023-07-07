@@ -1,4 +1,5 @@
 using KingGame;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,27 +8,38 @@ public class CardsControllers : MonoBehaviour
 {
     [SerializeField] PrefabsController _prefabsController;
 
-    private List<CardViewer> _cardsInstances = new List<CardViewer>();
+    private CardViewer _cardPrefab;
 
-    public List<CardViewer> CardsInstances => _cardsInstances;
+    private List<CardViewer> _cardsOnScene = new List<CardViewer>();
+
+    public List<CardViewer> CardsOnScene => _cardsOnScene;
+
+    private void Awake()
+    {
+        _cardPrefab = GetCardPrefab();
+    }
 
     public void CreateCardsForPlayer(PlayerViewer playerViewer, DeckController deckController, bool isMainPlayer)
     {
         List<CardData> playerCards = new List<CardData>();
 
-        CardViewer prefab = _prefabsController.GetPrefab(PrefabKey.CARD_VIEWER).GetComponent<CardViewer>();
+        _cardPrefab ??= GetCardPrefab();
 
         for (int i = 0; i < GameConstants.CARDS_PER_PLAYER; i++)
         {
-            var currCard = deckController.Deck.Pop();
+            CardDataSO cardData = deckController.Deck.Pop();
 
-            CardData card = new(currCard, deckController.GetCurrentDeckVerse(), isMainPlayer);
+            CardData card = new (
+                data: cardData, 
+                verseSprite: deckController.GetCurrentDeckVerse(), 
+                isMainPlayer: isMainPlayer, 
+                cardController: this);
 
-            CardViewer cardViewer = Instantiate(prefab, playerViewer.RectTransform.transform);
+            CardViewer cardViewer = Instantiate(_cardPrefab, playerViewer.RectTransform.transform);
 
-            cardViewer.SetData(card);
+            cardViewer.SetData(card, playerViewer);
 
-            _cardsInstances.Add(cardViewer);
+            _cardsOnScene.Add(cardViewer);
 
             playerCards.Add(card);
         }
@@ -37,12 +49,17 @@ public class CardsControllers : MonoBehaviour
 
     public void DestroyCardsInstances()
     {
-        foreach (var card in _cardsInstances)
+        foreach (var card in _cardsOnScene)
         {
             if (card != null)
                 card.DestroyCard();
         }
 
-        _cardsInstances.Clear();
+        _cardsOnScene.Clear();
+    }
+
+    private CardViewer GetCardPrefab()
+    {
+        return _prefabsController.GetPrefab(PrefabKey.CARD_VIEWER).GetComponent<CardViewer>();
     }
 }
