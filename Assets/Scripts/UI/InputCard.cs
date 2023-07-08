@@ -88,18 +88,32 @@ public class InputCard : MonoBehaviour
         if (!ThisCardIsOnStartDrag() || _thisCardWasChoiced)
             return;
 
-        var imageRect = _cardViewer.ImageTransform;
-
         if (_draggingToUp)
         {
-            imageRect.DOMove(_cardViewer.PlayerViewer.SelectedCardArea.position, _lerpTime).OnComplete(
-                () => ChoiceCard());
+            if (IsMyTimeToPlay())
+                PlayCardToBoard();
+            else
+            {
+                Debug.Log("Isn't your time to play!");
+                ReturnCardToHand();
+            }
         }
         else
         {
-            imageRect.DOMoveY(_initialPosition.y, _lerpTime).
-                OnComplete(() => _onCardUnselected?.Invoke());
+            ReturnCardToHand();
         }
+    }
+
+    private void PlayCardToBoard()
+    {
+        _cardViewer.ImageTransform.DOMove(_cardViewer.PlayerViewer.SelectedCardArea.position, _lerpTime)
+            .OnComplete(() => ChoiceCard());
+    }
+
+    private void ReturnCardToHand()
+    {
+        _cardViewer.ImageTransform.DOMoveY(_initialPosition.y, _lerpTime).
+                OnComplete(() => _onCardUnselected?.Invoke());
     }
 
     private void ChoiceCard()
@@ -117,6 +131,11 @@ public class InputCard : MonoBehaviour
     private void SetUnselectedCard()
     {
         _currentCardSelected = null;
+    }
+
+    private bool IsMyTimeToPlay()
+    {
+        return _cardViewer.CardData.PlayerData.IsMyTimeToPlay;
     }
 
     private bool ThisCardIsOnStartDrag()

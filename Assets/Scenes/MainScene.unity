@@ -273,6 +273,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293812858}
   m_CullTransparentMesh: 1
+--- !u!4 &327134418 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+  m_PrefabInstance: {fileID: 3108504158096265132}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &327134419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3108504158351172479, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+  m_PrefabInstance: {fileID: 3108504158096265132}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee5aca05d8265043a2c51d728388e8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,6 +1023,7 @@ Transform:
   - {fileID: 736392899}
   - {fileID: 1093961450}
   - {fileID: 1472382781}
+  - {fileID: 327134418}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1069,6 +1086,65 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fd02c7d7a482b6a4680e617cab4293ba, type: 3}
+--- !u!1001 &3108504158096265132
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 2023206165}
+    m_Modifications:
+    - target: {fileID: 3108504158351172477, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_Name
+      value: TurnController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108504158351172478, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 403cb27654f0c2547a386bf8c3811683, type: 3}
 --- !u!1001 &7244239071651630141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1129,6 +1205,10 @@ PrefabInstance:
       propertyPath: _deckController
       value: 
       objectReference: {fileID: 736392900}
+    - target: {fileID: 7244239071602137747, guid: 883fbb7a1812eab41a1d76cac6f39faa, type: 3}
+      propertyPath: _turnController
+      value: 
+      objectReference: {fileID: 327134419}
     - target: {fileID: 7244239071602137747, guid: 883fbb7a1812eab41a1d76cac6f39faa, type: 3}
       propertyPath: _cardsController
       value: 

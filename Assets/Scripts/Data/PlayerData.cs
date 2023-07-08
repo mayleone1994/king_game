@@ -9,22 +9,49 @@ namespace KingGame
 
         private List<CardData> _cards;
 
+        private bool _isMyTimeToPlay;
+
         public readonly long ID; // TODO: became this unique
         public readonly string Name;
         public readonly Sprite Picture;
+        public readonly bool IsMainPlayer;
         public int Wins => GetWinsValue();
         public List<CardData> Cards => _cards;
+        public bool IsMyTimeToPlay => _isMyTimeToPlay;
 
-        public PlayerData(string name, Sprite picture, long id)
+        public PlayerData(string name, Sprite picture, long id, bool isMainPlayer)
         {
             Name = name;
             Picture = picture;
             ID = id;
+            IsMainPlayer = isMainPlayer;
+
+            EventsSubscribe();
         }
 
         public void SetCards(List<CardData> cards)
         {
             _cards = cards;
+        }
+
+        private void EventsSubscribe()
+        {
+            TurnController.OnPlayerTimeToPlayUpdated += UpdatePlayerTimeToPlayInformation;
+        }
+
+        // To avoid memory leak
+        private void EventsUnsubscribe()
+        {
+            TurnController.OnPlayerTimeToPlayUpdated -= UpdatePlayerTimeToPlayInformation;
+        }
+        private void UpdatePlayerTimeToPlayInformation(PlayerData player)
+        {
+            _isMyTimeToPlay = player.ID == this.ID;
+        }
+
+        ~PlayerData()
+        {
+            EventsUnsubscribe();
         }
 
         public void AddWinValue()

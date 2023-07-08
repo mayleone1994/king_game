@@ -11,6 +11,7 @@ public class Initializer : MonoBehaviour
     [SerializeField] private DeckController _deckController;
     [SerializeField] private PlayersController _playersController;
     [SerializeField] private CardsControllers _cardsController;
+    [SerializeField] private TurnController _turnController;
 
     private void Awake()
     {
@@ -59,8 +60,22 @@ public class Initializer : MonoBehaviour
        for (int i = 0; i < _playersController.PlayersViewer.Count; i++)
         {
             PlayerViewer playerViewer = _playersController.PlayersViewer[i];
-            _cardsController.CreateCardsForPlayer(playerViewer, _deckController, i == 0);
+            _cardsController.CreateCardsForPlayer(playerViewer, _deckController);
         }
+
+        InitTurn();
+    }
+
+    private void InitTurn()
+    {
+        if(_turnController == null)
+        {
+            ShowInitError("Turn controller was not found");
+            return;
+        }
+
+        _turnController.InitTurnController(_playersController);
+        _turnController.RandomizePlayersOrder();
     }
 
     public void RestartGame()

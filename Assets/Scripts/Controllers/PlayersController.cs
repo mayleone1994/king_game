@@ -59,8 +59,14 @@ public class PlayersController : MonoBehaviour
 
         for (int i = 0; i < GameConstants.MAX_PLAYERS; i++)
         {
-            int relativeIndex = (i + _mainPlayerIndex) % GameConstants.MAX_PLAYERS;
-            PlayerData playerData = new PlayerData($"Player {relativeIndex + 1}", null, i);
+            int relativeIndex = Utils.GetRelativeIndex(i, _mainPlayerIndex, GameConstants.MAX_PLAYERS);
+
+            PlayerData playerData = new PlayerData(
+                name: $"Player {relativeIndex + 1}",
+                picture: null, 
+                id: i,
+                isMainPlayer: i == 0);
+
             _playersData[relativeIndex] = playerData;
             PlayerViewer playerViewer = _playersViewer[i];
             playerViewer.InitPlayerViewer(playerData, 

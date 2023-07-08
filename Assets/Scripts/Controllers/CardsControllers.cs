@@ -19,7 +19,7 @@ public class CardsControllers : MonoBehaviour
         _cardPrefab = GetCardPrefab();
     }
 
-    public void CreateCardsForPlayer(PlayerViewer playerViewer, DeckController deckController, bool isMainPlayer)
+    public void CreateCardsForPlayer(PlayerViewer playerViewer, DeckController deckController)
     {
         List<CardData> playerCards = new List<CardData>();
 
@@ -32,8 +32,7 @@ public class CardsControllers : MonoBehaviour
             CardData card = new (
                 data: cardData, 
                 verseSprite: deckController.GetCurrentDeckVerse(), 
-                isMainPlayer: isMainPlayer, 
-                cardController: this);
+                playerData: playerViewer.PlayerData);
 
             CardViewer cardViewer = Instantiate(_cardPrefab, playerViewer.RectTransform.transform);
 

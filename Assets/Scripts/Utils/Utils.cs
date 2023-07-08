@@ -20,5 +20,11 @@ namespace KingGame
                 collection[i] = t;
             }
         }
+
+        // Get relative index in clockwise according an amount
+        public static int GetRelativeIndex(int currentIndex, int referenceIndex, int amount)
+        {
+            return (currentIndex + referenceIndex) % amount;
+        }
     }
 }
