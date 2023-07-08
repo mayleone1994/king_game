@@ -11,7 +11,8 @@ public class PlayerViewer : MonoBehaviour
     [SerializeField] private HorizontalLayoutGroup _cardsOnHand;
     [SerializeField] private RectTransform _selectedCardArea;
     [SerializeField] private TMP_Text _nameArea;
-    [SerializeField] private Canvas _canvas;
+
+    private Canvas _canvas;
 
     private PlayerData _playerData;
 
@@ -23,9 +24,11 @@ public class PlayerViewer : MonoBehaviour
 
     public Canvas Canvas => _canvas;
 
-    public void InitPlayerViewer(PlayerData playerData)
+    public void InitPlayerViewer(PlayerData playerData, Canvas canvas)
     {
         _playerData = playerData;
+
+        _canvas = canvas;
 
         SetPlayerName(_playerData.Name);
     }

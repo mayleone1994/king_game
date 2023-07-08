@@ -22,6 +22,6 @@ namespace KingGame
 
     public enum PrefabKey
     {
-        CARD_VIEWER
+        CARD_VIEWER, PLAYERS_CONTAINER
     };
 }

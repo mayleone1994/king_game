@@ -90,7 +90,7 @@ public class InputCard : MonoBehaviour
 
         var imageRect = _cardViewer.ImageTransform;
 
-        if (_draggingToUp && imageRect.position.y >= imageRect.sizeDelta.y)
+        if (_draggingToUp)
         {
             imageRect.DOMove(_cardViewer.PlayerViewer.SelectedCardArea.position, _lerpTime).OnComplete(
                 () => ChoiceCard());
@@ -143,6 +143,6 @@ public class InputCard : MonoBehaviour
 
     private float GetMaxPositionY()
     {
-        return _cardViewer.PlayerViewer.SelectedCardArea.offsetMax.y;
+        return Screen.height / 2;
     }
 }

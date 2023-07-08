@@ -56,7 +56,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-       for (int i = 0; i < _playersController.PlayersViewer.Length; i++)
+       for (int i = 0; i < _playersController.PlayersViewer.Count; i++)
         {
             PlayerViewer playerViewer = _playersController.PlayersViewer[i];
             _cardsController.CreateCardsForPlayer(playerViewer, _deckController, i == 0);

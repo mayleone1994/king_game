@@ -1,3 +1,4 @@
+using Crystal;
 using KingGame;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,15 +9,49 @@ public class PlayersController : MonoBehaviour
     // TO DEBUG THE POSITION OF EACH PLAYER BY BOARD
     [SerializeField] private int _mainPlayerIndex;
 
-    [SerializeField] private PlayerViewer[] _playersViewer;
+    [SerializeField] private PrefabsControllerSO _prefabsController;
+
+    [SerializeField] private SafeArea _safeAreaToCreateContainer;
+
+    private List<PlayerViewer> _playersViewer;
+
+    private RectTransform _playersContainer;
 
     private PlayerData[] _playersData;
 
     public PlayerData[] PlayersData => _playersData;
 
-    public PlayerViewer[] PlayersViewer => _playersViewer;
+    public List<PlayerViewer> PlayersViewer => _playersViewer;
+    public RectTransform PlayersContainer => _playersContainer;
 
     public void InitPlayers()
+    {
+        CreatePlayersContainer();
+    }
+
+    private void CreatePlayersContainer()
+    {
+        GameObject prefab = _prefabsController.GetPrefab(PrefabKey.PLAYERS_CONTAINER);
+
+        _playersContainer = Instantiate(
+            prefab, _safeAreaToCreateContainer.transform).GetComponent<RectTransform>();
+
+        _playersViewer = new();
+
+        foreach (Transform child in _playersContainer.transform)
+        {
+            PlayerViewer playerViewer = child.GetComponent<PlayerViewer>();
+
+            if (playerViewer == null)
+                continue;
+
+            _playersViewer.Add(playerViewer);
+        }
+
+        CreatePlayersData();
+    }
+
+    private void CreatePlayersData()
     {
         // Create local players
 
@@ -28,7 +63,8 @@ public class PlayersController : MonoBehaviour
             PlayerData playerData = new PlayerData($"Player {relativeIndex + 1}", null, i);
             _playersData[relativeIndex] = playerData;
             PlayerViewer playerViewer = _playersViewer[i];
-            playerViewer.InitPlayerViewer(playerData);
+            playerViewer.InitPlayerViewer(playerData, 
+                _safeAreaToCreateContainer.GetComponentInParent<Canvas>());
         }
     }
 }

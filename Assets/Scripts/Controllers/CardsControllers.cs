@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CardsControllers : MonoBehaviour
 {
-    [SerializeField] PrefabsController _prefabsController;
+    [SerializeField] PrefabsControllerSO _prefabsController;
 
     private CardViewer _cardPrefab;
 
