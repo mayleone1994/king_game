@@ -9,8 +9,6 @@ public class CardViewer : MonoBehaviour
 
     private Image _imageComponent;
 
-    private float _initialPosition_Y;
-
     private bool _init = false;
 
     public void Init(CardData cardData, Image imageComponent)
