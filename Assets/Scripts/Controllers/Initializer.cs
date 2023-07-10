@@ -8,10 +8,11 @@ public class Initializer : MonoBehaviour
 
     // Dependencies:
 
-    [SerializeField] private DeckController _deckController;
-    [SerializeField] private PlayersController _playersController;
-    [SerializeField] private CardsControllers _cardsController;
-    [SerializeField] private TurnController _turnController;
+    [SerializeField] private DeckController             _deckController;
+    [SerializeField] private PlayersController          _playersController;
+    [SerializeField] private CardsControllers           _cardsController;
+    [SerializeField] private TurnController             _turnController;
+    [SerializeField] private TurnValidatorController    _turnValidatorController;
 
     private void Awake()
     {
@@ -63,6 +64,19 @@ public class Initializer : MonoBehaviour
             _cardsController.CreateCardsForPlayer(playerViewer, _deckController);
         }
 
+        InitTurnValidator();
+    }
+
+    private void InitTurnValidator()
+    {
+        if(_turnValidatorController == null)
+        {
+            ShowInitError("Turn validator controller was not found");
+            return;
+        }
+
+        _turnValidatorController.Init();
+
         InitTurn();
     }
 
@@ -74,8 +88,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _turnController.InitTurnController(_playersController);
-        _turnController.RandomizePlayersOrder();
+        _turnController.InitTurnController(_playersController, _turnValidatorController);
     }
 
     public void RestartGame()

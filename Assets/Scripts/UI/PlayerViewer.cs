@@ -20,7 +20,7 @@ public class PlayerViewer : MonoBehaviour
 
     public RectTransform RectTransform => this.GetComponent<RectTransform>();
 
-    public RectTransform SelectedCardArea => _selectedCardArea;
+    public RectTransform BoardArea => _selectedCardArea;
 
     public Canvas Canvas => _canvas;
 

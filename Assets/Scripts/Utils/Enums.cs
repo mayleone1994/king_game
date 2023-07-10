@@ -20,8 +20,23 @@ namespace KingGame
         DEFAULT, NONE
     };
 
+    public enum CardAction
+    {
+        DRAW, BOARD, HAND, EXIT, REMOVE
+    };
+
+    public enum CardState
+    {
+        ON_HAND, ON_BOARD
+    };
+
+    public enum DragDirection
+    {
+        UP, DOWN
+    };
+
     public enum PrefabKey
     {
-        CARD_VIEWER, PLAYERS_CONTAINER
+        CARD_PREFAB, PLAYERS_CONTAINER
     };
 }

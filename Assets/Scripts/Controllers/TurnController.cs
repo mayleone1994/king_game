@@ -7,18 +7,30 @@ using System.Linq;
 
 public class TurnController : MonoBehaviour
 {
-    public static event Action<PlayerData> OnPlayerTimeToPlayUpdated;
+    public static event Action<PlayerData> OnPlayerTurnUpdated;
 
     private PlayersController _playersController;
 
+    private TurnValidatorController _turnValidator;
+
     private Queue<PlayerData> _playersOrder;
 
-    public void InitTurnController(PlayersController playersController)
+    public void InitTurnController(PlayersController playersController, TurnValidatorController turnValidator)
     {
         _playersController = playersController;
+        _turnValidator = turnValidator;
+
+        UpdatePlayersOrder();
+
+        _turnValidator.OnPlayerTurnChanged += UpdatePlayerTurn;
     }
 
-    public void RandomizePlayersOrder()
+    private void OnDestroy()
+    {
+        _turnValidator.OnPlayerTurnChanged -= UpdatePlayerTurn;
+    }
+
+    public void UpdatePlayersOrder(PlayerData playerData = null)
     {
         _playersOrder = new();
 
@@ -26,11 +38,14 @@ public class TurnController : MonoBehaviour
 
         int max = players.Length;
 
-        int sortedIndex = UnityEngine.Random.Range(0, max);
+        int playerIndex = playerData == null
+            ? UnityEngine.Random.Range(0, max)
+            : playerData.RoomIndex;
 
         for (int i = 0; i < max; i++)
         {
-            int relativeIndex = Utils.GetRelativeIndex(i, sortedIndex, max);
+            int relativeIndex = Utils.GetRelativeIndex(i, playerIndex, max);
+
             _playersOrder.Enqueue(players[relativeIndex]);
         }
 
@@ -38,13 +53,13 @@ public class TurnController : MonoBehaviour
 
         playerOrderDebug.ForEach(p => { Debug.Log($"Player turn order: {p.Name}"); });
 
-        UpdatePlayerTime();
+        UpdatePlayerTurn();
     }
 
-    private void UpdatePlayerTime()
+    private void UpdatePlayerTurn()
     {
         PlayerData currentPlayer = _playersOrder.Dequeue();
 
-        OnPlayerTimeToPlayUpdated?.Invoke(currentPlayer);
+        OnPlayerTurnUpdated?.Invoke(currentPlayer);
     }
 }

@@ -65,7 +65,8 @@ public class PlayersController : MonoBehaviour
                 name: $"Player {relativeIndex + 1}",
                 picture: null, 
                 id: i,
-                isMainPlayer: i == 0);
+                isMainPlayer: i == 0,
+                roomIndex: relativeIndex);
 
             _playersData[relativeIndex] = playerData;
             PlayerViewer playerViewer = _playersViewer[i];

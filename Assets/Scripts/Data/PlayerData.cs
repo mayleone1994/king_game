@@ -15,16 +15,18 @@ namespace KingGame
         public readonly string Name;
         public readonly Sprite Picture;
         public readonly bool IsMainPlayer;
+        public readonly int RoomIndex;
         public int Wins => GetWinsValue();
         public List<CardData> Cards => _cards;
-        public bool IsMyTimeToPlay => _isMyTimeToPlay;
+        public bool IsPlayerTurn => _isMyTimeToPlay;
 
-        public PlayerData(string name, Sprite picture, long id, bool isMainPlayer)
+        public PlayerData(string name, Sprite picture, long id, int roomIndex, bool isMainPlayer)
         {
             Name = name;
             Picture = picture;
             ID = id;
             IsMainPlayer = isMainPlayer;
+            RoomIndex = roomIndex;
 
             EventsSubscribe();
         }
@@ -36,13 +38,13 @@ namespace KingGame
 
         private void EventsSubscribe()
         {
-            TurnController.OnPlayerTimeToPlayUpdated += UpdatePlayerTimeToPlayInformation;
+            TurnController.OnPlayerTurnUpdated += UpdatePlayerTimeToPlayInformation;
         }
 
         // To avoid memory leak
         private void EventsUnsubscribe()
         {
-            TurnController.OnPlayerTimeToPlayUpdated -= UpdatePlayerTimeToPlayInformation;
+            TurnController.OnPlayerTurnUpdated -= UpdatePlayerTimeToPlayInformation;
         }
         private void UpdatePlayerTimeToPlayInformation(PlayerData player)
         {

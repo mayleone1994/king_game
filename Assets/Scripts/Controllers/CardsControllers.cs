@@ -8,11 +8,11 @@ public class CardsControllers : MonoBehaviour
 {
     [SerializeField] PrefabsControllerSO _prefabsController;
 
-    private CardViewer _cardPrefab;
+    private CardHandler _cardPrefab;
 
-    private List<CardViewer> _cardsOnScene = new List<CardViewer>();
+    private List<CardHandler> _cardsOnScene = new List<CardHandler>();
 
-    public List<CardViewer> CardsOnScene => _cardsOnScene;
+    public List<CardHandler> CardsOnScene => _cardsOnScene;
 
     private void Awake()
     {
@@ -29,16 +29,18 @@ public class CardsControllers : MonoBehaviour
         {
             CardDataSO cardData = deckController.Deck.Pop();
 
+            CardHandler cardHandler = Instantiate(_cardPrefab, playerViewer.RectTransform.transform);
+
             CardData card = new (
                 data: cardData, 
                 verseSprite: deckController.GetCurrentDeckVerse(), 
-                playerData: playerViewer.PlayerData);
+                playerData: playerViewer.PlayerData,
+                cardHandler: cardHandler
+                );
 
-            CardViewer cardViewer = Instantiate(_cardPrefab, playerViewer.RectTransform.transform);
+            cardHandler.Init(card, playerViewer);
 
-            cardViewer.SetData(card, playerViewer);
-
-            _cardsOnScene.Add(cardViewer);
+            _cardsOnScene.Add(cardHandler);
 
             playerCards.Add(card);
         }
@@ -51,14 +53,14 @@ public class CardsControllers : MonoBehaviour
         foreach (var card in _cardsOnScene)
         {
             if (card != null)
-                card.DestroyCard();
+                card.CardAction.CallAction(CardAction.REMOVE);
         }
 
         _cardsOnScene.Clear();
     }
 
-    private CardViewer GetCardPrefab()
+    private CardHandler GetCardPrefab()
     {
-        return _prefabsController.GetPrefab(PrefabKey.CARD_VIEWER).GetComponent<CardViewer>();
+        return _prefabsController.GetPrefab(PrefabKey.CARD_PREFAB).GetComponent<CardHandler>();
     }
 }
