@@ -35,7 +35,7 @@ public class CardAnimation : MonoBehaviour
 
         void SetCardToBoard(Action callback)
         {
-            _cardRect.transform.parent = _playerViewer.BoardArea.transform;
+            _cardRect.transform.SetParent(_playerViewer.BoardArea, true);
             callback?.Invoke();
         }
     }
