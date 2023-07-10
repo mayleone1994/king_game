@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CardValidator : MonoBehaviour
 {
     private Image _imageComponent;
+    private RaycastTarget _raycastTarget;
     private CardData _cardData;
 
     private bool _init = false;
@@ -23,12 +24,13 @@ public class CardValidator : MonoBehaviour
         _cardData.OnCardStateUpdated -= ValidateByStateChanges;
     }
 
-    public void Init(Image imageComponent, CardData cardData)
+    public void Init(Image imageComponent, CardData cardData, RaycastTarget raycastTarget)
     {
         if (_init) return;
 
         _imageComponent = imageComponent;
         _cardData = cardData;
+        _raycastTarget = raycastTarget;
         _cardData.OnCardStateUpdated += ValidateByStateChanges;
 
         _init = true;
@@ -37,8 +39,13 @@ public class CardValidator : MonoBehaviour
     {
         SetCardInteraction(CardIsAvailableToPlay());
 
-        if(OnHand())
+        if(_cardData.IsMainPlayer)
+        {
             SetCardColor(IsPlayerTurn() && HasValidSuit());
+        } else
+        {
+            SetCardColor(IsPlayerTurn());
+        }
     }
 
     private void ValidateByStateChanges()
@@ -48,11 +55,13 @@ public class CardValidator : MonoBehaviour
 
     private void SetCardInteraction(bool state)
     {
-        _imageComponent.raycastTarget = state;
+        _raycastTarget.raycastTarget = state;
     }
 
     private void SetCardColor(bool state)
     {
+        if (!OnHand()) return;
+
         _imageComponent.color = state ? Color.white : Color.grey;
     }
 

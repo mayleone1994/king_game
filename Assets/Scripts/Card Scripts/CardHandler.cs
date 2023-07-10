@@ -18,6 +18,7 @@ public class CardHandler : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Image _imageComponent;
+    [SerializeField] private RaycastTarget _raycastTarget;
     [SerializeField] private RectTransform _cardRect;
 
     private bool _init = false;
@@ -70,7 +71,7 @@ public class CardHandler : MonoBehaviour
 
     private void InitValidator()
     {
-        _cardValidator.Init(cardData: _cardData, imageComponent: _imageComponent);
+        _cardValidator.Init(cardData: _cardData, imageComponent: _imageComponent, raycastTarget: _raycastTarget);
     }
 
     private void InitPosition()

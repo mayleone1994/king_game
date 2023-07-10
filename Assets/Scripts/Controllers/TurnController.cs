@@ -15,6 +15,8 @@ public class TurnController : MonoBehaviour
 
     private Queue<PlayerData> _playersOrder;
 
+    private bool _init = false;
+
     public void InitTurnController(PlayersController playersController, TurnValidatorController turnValidator)
     {
         _playersController = playersController;
@@ -22,7 +24,11 @@ public class TurnController : MonoBehaviour
 
         UpdatePlayersOrder();
 
-        _turnValidator.OnPlayerTurnChanged += UpdatePlayerTurn;
+        if (!_init)
+        {
+            _turnValidator.OnPlayerTurnChanged += UpdatePlayerTurn;
+            _init = true;
+        }
     }
 
     private void OnDestroy()

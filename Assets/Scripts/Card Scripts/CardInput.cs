@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(EventTrigger))]
-[RequireComponent(typeof(Image))]
 
 public class CardInput : MonoBehaviour
 {
@@ -43,17 +42,11 @@ public class CardInput : MonoBehaviour
         _init = true;
     }
 
-    public void OnSelect()
-    {
-        if (CanDragCard())
-        {
-            _onCardSelected?.Invoke(_cardData);
-        }
-    }
-
     public void OnBeginDrag(BaseEventData eventData)
     {
         if (!CanDragCard()) return;
+
+        _onCardSelected?.Invoke(_cardData);
 
         PointerEventData pointerData = (PointerEventData)eventData;
 

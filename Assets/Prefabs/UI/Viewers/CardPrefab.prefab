@@ -120,7 +120,8 @@ MonoBehaviour:
   _cardAnimation: {fileID: 5095565135109673285}
   _cardValidator: {fileID: 5579518025228134187}
   _cardPosition: {fileID: 8808659882742983099}
-  _imageComponent: {fileID: 6865205259201384112}
+  _imageComponent: {fileID: 498321853689428429}
+  _raycastTarget: {fileID: 5290105544771243672}
   _cardRect: {fileID: 135545897193024634}
 --- !u!114 &6440373474896354935
 MonoBehaviour:
@@ -153,6 +154,7 @@ GameObject:
   - component: {fileID: 2253767230542008346}
   - component: {fileID: 4260768572634435780}
   - component: {fileID: 3966258758933306694}
+  - component: {fileID: 498321853689428429}
   m_Layer: 5
   m_Name: CardViewer
   m_TagString: Untagged
@@ -200,6 +202,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45cac60e293cb7418f38b6538873268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &498321853689428429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3120938040809958314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4302047102775555399
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,10 +390,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3554732737664477319}
-  - component: {fileID: 6865205259201384112}
   - component: {fileID: 3716464415147113452}
   - component: {fileID: 7245636482595259652}
   - component: {fileID: 6678537372483090998}
+  - component: {fileID: 5290105544771243672}
   m_Layer: 5
   m_Name: CardInput
   m_TagString: Untagged
@@ -389,36 +421,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6865205259201384112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7615253167570169866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &3716464415147113452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,22 +434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7245636482595259652}
-          m_TargetAssemblyTypeName: CardInput, Assembly-CSharp
-          m_MethodName: OnSelect
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 13
     callback:
       m_PersistentCalls:
@@ -480,23 +466,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 6
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7245636482595259652}
-          m_TargetAssemblyTypeName: CardInput, Assembly-CSharp
-          m_MethodName: OnDrop
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 3
+  - eventID: 14
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -532,3 +502,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7615253167570169866}
   m_CullTransparentMesh: 1
+--- !u!114 &5290105544771243672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7615253167570169866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72accf10876c83148b642a5942ee32b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

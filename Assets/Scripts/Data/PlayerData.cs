@@ -9,7 +9,7 @@ namespace KingGame
 
         private List<CardData> _cards;
 
-        private bool _isMyTimeToPlay;
+        private bool isPlayerTurn;
 
         public readonly long ID; // TODO: became this unique
         public readonly string Name;
@@ -18,7 +18,7 @@ namespace KingGame
         public readonly int RoomIndex;
         public int Wins => GetWinsValue();
         public List<CardData> Cards => _cards;
-        public bool IsPlayerTurn => _isMyTimeToPlay;
+        public bool IsPlayerTurn => isPlayerTurn;
 
         public PlayerData(string name, Sprite picture, long id, int roomIndex, bool isMainPlayer)
         {
@@ -48,7 +48,7 @@ namespace KingGame
         }
         private void UpdatePlayerTimeToPlayInformation(PlayerData player)
         {
-            _isMyTimeToPlay = player.ID == this.ID;
+            isPlayerTurn = player.ID == this.ID;
         }
 
         ~PlayerData()
