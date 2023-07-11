@@ -1041,6 +1041,10 @@ PrefabInstance:
       value: Initializer
       objectReference: {fileID: 0}
     - target: {fileID: 7244239071602137747, guid: 883fbb7a1812eab41a1d76cac6f39faa, type: 3}
+      propertyPath: _roomConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 809cb21fe3abe8f46a0e753e97521353, type: 2}
+    - target: {fileID: 7244239071602137747, guid: 883fbb7a1812eab41a1d76cac6f39faa, type: 3}
       propertyPath: _deckController
       value: 
       objectReference: {fileID: 736392900}

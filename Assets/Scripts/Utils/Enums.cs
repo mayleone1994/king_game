@@ -39,4 +39,9 @@ namespace KingGame
     {
         CARD_PREFAB, PLAYERS_CONTAINER
     };
+
+    public enum RoomType
+    {
+        OFFLINE, ONLINE, TUTORIAL
+    };
 }

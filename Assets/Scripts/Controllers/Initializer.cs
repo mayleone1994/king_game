@@ -6,8 +6,11 @@ using UnityEngine;
 public class Initializer : MonoBehaviour
 {
 
-    // Dependencies:
+    [Header("Configs")]
+    [SerializeField] private RoomConfigSO _roomConfig;
 
+
+    [Header("Controller Dependencies")]
     [SerializeField] private DeckController             _deckController;
     [SerializeField] private PlayersController          _playersController;
     [SerializeField] private CardsControllers           _cardsController;
