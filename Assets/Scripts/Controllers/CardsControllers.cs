@@ -45,7 +45,7 @@ public class CardsControllers : MonoBehaviour
             playerCards.Add(card);
         }
 
-        playerViewer.PlayerData.SetCards(playerCards);
+        playerViewer.PlayerData.SetCardsOnHand(playerCards);
     }
 
     public void DestroyCardsInstances()

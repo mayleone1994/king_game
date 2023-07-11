@@ -39,6 +39,7 @@ namespace KingGame
             if (_cardState == CardState.ON_BOARD)
                 return;
 
+            PlayerData.CardsOnHand.Remove(this);
             _cardState = CardState.ON_BOARD;
             OnCardStateUpdated?.Invoke();
         }

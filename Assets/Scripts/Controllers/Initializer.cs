@@ -16,6 +16,7 @@ public class Initializer : MonoBehaviour
     [SerializeField] private CardsControllers           _cardsController;
     [SerializeField] private TurnController             _turnController;
     [SerializeField] private TurnValidatorController    _turnValidatorController;
+    [SerializeField] private AIController               _aiController;
 
     private void Awake()
     {
@@ -24,6 +25,19 @@ public class Initializer : MonoBehaviour
 
     private void InitGame()
     {
+        InitRoomConfigs();
+    }
+
+    private void InitRoomConfigs()
+    {
+        if (_roomConfig == null)
+        {
+            ShowInitError("Room configs not found");
+            return;
+        }
+
+        _aiController.gameObject.SetActive(_roomConfig.RoomType != RoomType.ONLINE);
+
         InitPlayers();
     }
 

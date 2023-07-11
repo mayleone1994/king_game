@@ -7,9 +7,9 @@ namespace KingGame
     {
         private const string SAVE_KEY = "SAVED KEY";
 
-        private List<CardData> _cards;
+        private List<CardData> _cardsOnHand;
 
-        private bool isPlayerTurn;
+        private bool _isPlayerTurn;
 
         public readonly long ID; // TODO: became this unique
         public readonly string Name;
@@ -17,8 +17,8 @@ namespace KingGame
         public readonly bool IsMainPlayer;
         public readonly int RoomIndex;
         public int Wins => GetWinsValue();
-        public List<CardData> Cards => _cards;
-        public bool IsPlayerTurn => isPlayerTurn;
+        public List<CardData> CardsOnHand => _cardsOnHand;
+        public bool IsPlayerTurn => _isPlayerTurn;
 
         public PlayerData(string name, Sprite picture, long id, int roomIndex, bool isMainPlayer)
         {
@@ -31,24 +31,24 @@ namespace KingGame
             EventsSubscribe();
         }
 
-        public void SetCards(List<CardData> cards)
+        public void SetCardsOnHand(List<CardData> cards)
         {
-            _cards = cards;
+            _cardsOnHand = cards;
         }
 
         private void EventsSubscribe()
         {
-            TurnController.OnPlayerTurnUpdated += UpdatePlayerTimeToPlayInformation;
+            TurnController.OnPlayerTurnUpdated += UpdatePlayerTurn;
         }
 
         // To avoid memory leak
         private void EventsUnsubscribe()
         {
-            TurnController.OnPlayerTurnUpdated -= UpdatePlayerTimeToPlayInformation;
+            TurnController.OnPlayerTurnUpdated -= UpdatePlayerTurn;
         }
-        private void UpdatePlayerTimeToPlayInformation(PlayerData player)
+        private void UpdatePlayerTurn(PlayerData player)
         {
-            isPlayerTurn = player.ID == this.ID;
+            _isPlayerTurn = player.ID == this.ID;
         }
 
         ~PlayerData()
