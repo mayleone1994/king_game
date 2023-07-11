@@ -27,17 +27,21 @@ public class CardHandler : MonoBehaviour
 
     private CardData _cardData;
 
+    private EventsMediator _eventsMediator;
+
     public CardData CardData => _cardData;
     public PlayerViewer PlayerViewer => _playerViewer;
     public CardActions CardAction => _cardActions;
 
-    public void Init(CardData cardData, PlayerViewer playerViewer)
+    public void Init(CardData cardData, PlayerViewer playerViewer, EventsMediator eventsMediator)
     {
         if (_init) return;
 
         _cardData = cardData;
 
         _playerViewer = playerViewer;
+
+        _eventsMediator = eventsMediator;
 
         InitViewer();
 
@@ -66,7 +70,8 @@ public class CardHandler : MonoBehaviour
 
     private void InitActions()
     {
-        _cardActions.Init(cardData: _cardData, cardAnimation: _cardAnimation, this);
+        _cardActions.Init(cardData: _cardData, cardAnimation: _cardAnimation, 
+            cardHandler: this, eventsMediator: _eventsMediator);
     }
 
     private void InitValidator()

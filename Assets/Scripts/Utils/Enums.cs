@@ -10,7 +10,7 @@ namespace KingGame
         HEARTS, CLUBS, SPADES, DIAMONDS, NONE
     };
 
-    public enum Round
+    public enum Rule
     {
         NO_WINS, NO_HEARTS, NO_WOMAN, NO_MEN, NO_KING, NO_WIN_TWO_LAST
     };
@@ -23,6 +23,11 @@ namespace KingGame
     public enum CardAction
     {
         DRAW, BOARD, HAND, EXIT, REMOVE
+    };
+
+    public enum EventKey
+    {
+        PLAY_CARD, TURN_CHANGED, TURN_ENDED
     };
 
     public enum CardState

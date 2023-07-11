@@ -13,6 +13,7 @@ public class Initializer : MonoBehaviour
     [SerializeField] private CardsControllers           _cardsController;
     [SerializeField] private TurnController             _turnController;
     [SerializeField] private TurnValidatorController    _turnValidatorController;
+    [SerializeField] private CommunicationController    _communicationController;
 
     private void Awake()
     {
@@ -21,6 +22,17 @@ public class Initializer : MonoBehaviour
 
     private void InitGame()
     {
+        ValidateCommunicationController();
+    }
+
+    private void ValidateCommunicationController()
+    {
+        if(_communicationController == null)
+        {
+            ShowInitError("Communication controller not found");
+            return;
+        }
+
         InitPlayers();
     }
 
@@ -61,7 +73,8 @@ public class Initializer : MonoBehaviour
        for (int i = 0; i < _playersController.PlayersViewer.Count; i++)
         {
             PlayerViewer playerViewer = _playersController.PlayersViewer[i];
-            _cardsController.CreateCardsForPlayer(playerViewer, _deckController);
+            _cardsController.CreateCardsForPlayer(playerViewer, _deckController,
+                _communicationController.EventsMediator);
         }
 
         InitTurnValidator();
@@ -75,7 +88,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _turnValidatorController.Init();
+        _turnValidatorController.Init(_communicationController.EventsMediator);
 
         InitTurn();
     }
@@ -88,7 +101,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _turnController.InitTurnController(_playersController, _turnValidatorController);
+        _turnController.InitTurnController(_playersController, _communicationController.EventsMediator);
     }
 
     public void RestartGame()

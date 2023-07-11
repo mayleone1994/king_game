@@ -8,6 +8,8 @@ public class CardsControllers : MonoBehaviour
 {
     [SerializeField] PrefabsControllerSO _prefabsController;
 
+    private EventsMediator _eventsMediator;
+
     private CardHandler _cardPrefab;
 
     private List<CardHandler> _cardsOnScene = new List<CardHandler>();
@@ -19,11 +21,13 @@ public class CardsControllers : MonoBehaviour
         _cardPrefab = GetCardPrefab();
     }
 
-    public void CreateCardsForPlayer(PlayerViewer playerViewer, DeckController deckController)
+    public void CreateCardsForPlayer(PlayerViewer playerViewer, DeckController deckController, EventsMediator eventsMediator)
     {
         List<CardData> playerCards = new List<CardData>();
 
         _cardPrefab ??= GetCardPrefab();
+
+        _eventsMediator = eventsMediator;
 
         for (int i = 0; i < GameConstants.CARDS_PER_PLAYER; i++)
         {
@@ -38,7 +42,7 @@ public class CardsControllers : MonoBehaviour
                 cardHandler: cardHandler
                 );
 
-            cardHandler.Init(card, playerViewer);
+            cardHandler.Init(card, playerViewer, _eventsMediator);
 
             _cardsOnScene.Add(cardHandler);
 

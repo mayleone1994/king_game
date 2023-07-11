@@ -11,29 +11,29 @@ public class TurnController : MonoBehaviour
 
     private PlayersController _playersController;
 
-    private TurnValidatorController _turnValidator;
+    private EventsMediator _eventsMediator;
 
     private Queue<PlayerData> _playersOrder;
 
     private bool _init = false;
 
-    public void InitTurnController(PlayersController playersController, TurnValidatorController turnValidator)
+    public void InitTurnController(PlayersController playersController, EventsMediator eventsMediator)
     {
         _playersController = playersController;
-        _turnValidator = turnValidator;
+        _eventsMediator = eventsMediator;
 
         UpdatePlayersOrder();
 
         if (!_init)
         {
-            _turnValidator.OnPlayerTurnChanged += UpdatePlayerTurn;
+            _eventsMediator.Subscribe(EventKey.TURN_CHANGED, UpdatePlayerTurn);
             _init = true;
         }
     }
 
     private void OnDestroy()
     {
-        _turnValidator.OnPlayerTurnChanged -= UpdatePlayerTurn;
+        _eventsMediator.Unsubscribe(EventKey.TURN_CHANGED, UpdatePlayerTurn);
     }
 
     public void UpdatePlayersOrder(PlayerData playerData = null)
@@ -62,7 +62,7 @@ public class TurnController : MonoBehaviour
         UpdatePlayerTurn();
     }
 
-    private void UpdatePlayerTurn()
+    private void UpdatePlayerTurn(object arg = null)
     {
         PlayerData currentPlayer = _playersOrder.Dequeue();
 

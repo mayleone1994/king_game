@@ -14,15 +14,17 @@ public class CardActions : MonoBehaviour
     private CardData _cardData;
     private CardAnimation _cardAnimation;
     private CardHandler _cardHandler;
+    private EventsMediator _eventsMediator;
     private bool _init = false;
 
-   public void Init(CardData cardData, CardAnimation cardAnimation, CardHandler cardHandler)
+   public void Init(CardData cardData, CardAnimation cardAnimation, CardHandler cardHandler, EventsMediator eventsMediator)
     {
         if(_init) return;
 
         _cardData = cardData;
         _cardAnimation = cardAnimation;
         _cardHandler = cardHandler;
+        _eventsMediator = eventsMediator;
         InitDict();
         _init = true;
     }
@@ -57,7 +59,7 @@ public class CardActions : MonoBehaviour
         void SelectCard()
         {
             callback?.Invoke();
-            OnCardSelected?.Invoke(_cardData);
+            _eventsMediator.InvokeEvent(EventKey.PLAY_CARD, _cardData);
         }
     }
 
