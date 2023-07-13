@@ -16,9 +16,10 @@ public class Initializer : MonoBehaviour
     [SerializeField] private CardsControllers           _cardsController;
     [SerializeField] private TurnController             _turnController;
     [SerializeField] private TurnValidatorController    _turnValidatorController;
+    [SerializeField] private ScoreController            _scoreController;
     [SerializeField] private AIController               _aiController;
 
-    private void Awake()
+    private void Start()
     {
         InitGame();
     }
@@ -49,7 +50,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _playersController.InitPlayers();
+        _playersController.InitPlayers(_scoreController);
 
         InitDeck();
     }
@@ -78,7 +79,7 @@ public class Initializer : MonoBehaviour
        for (int i = 0; i < _playersController.PlayersViewer.Count; i++)
         {
             PlayerViewer playerViewer = _playersController.PlayersViewer[i];
-            _cardsController.CreateCardsForPlayer(playerViewer, _deckController);
+            _cardsController.CreateCardsForPlayer(playerViewer, _deckController, _turnValidatorController);
         }
 
         InitTurnValidator();
@@ -106,6 +107,19 @@ public class Initializer : MonoBehaviour
         }
 
         _turnController.InitTurnController(_playersController, _turnValidatorController);
+
+        InitScoreController();
+    }
+
+    private void InitScoreController()
+    {
+        if (_scoreController == null)
+        {
+            ShowInitError("Score controller was not found");
+            return;
+        }
+
+        _scoreController.Init(_turnValidatorController);
     }
 
     public void RestartGame()

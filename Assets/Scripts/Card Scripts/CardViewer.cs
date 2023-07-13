@@ -1,9 +1,10 @@
 using KingGame;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-[RequireComponent (typeof(Image))]
+[RequireComponent(typeof(Image))]
 public class CardViewer : MonoBehaviour
 {
     private CardData _cardData;
@@ -33,6 +34,11 @@ public class CardViewer : MonoBehaviour
         ShowSprite(_cardData.IsMainPlayer);
 
         _init = true;
+    }
+
+    public void ChangeUIOrderPriority()
+    {
+        _cardData.CardHandler.transform.SetAsLastSibling();
     }
 
     private void ShowSprite(bool showSprite)

@@ -24,20 +24,25 @@ public class CardHandler : MonoBehaviour
     private bool _init = false;
 
     private PlayerViewer _playerViewer;
-
     private CardData _cardData;
+    private TurnValidatorController _turnValidator;
 
     public CardData CardData => _cardData;
     public PlayerViewer PlayerViewer => _playerViewer;
     public CardActions CardAction => _cardActions;
 
-    public void Init(CardData cardData, PlayerViewer playerViewer)
+    public CardViewer CardViewer => _cardViewer;
+    public TurnValidatorController TurnValidator => _turnValidator;
+
+    public void Init(CardData cardData, PlayerViewer playerViewer, TurnValidatorController turnValidator)
     {
         if (_init) return;
 
         _cardData = cardData;
 
         _playerViewer = playerViewer;
+
+        _turnValidator = turnValidator;
 
         InitViewer();
 
@@ -61,7 +66,7 @@ public class CardHandler : MonoBehaviour
 
     private void InitAnimation()
     {
-        _cardAnimation.Init(cardRect: _cardRect, playerViewer: _playerViewer);
+        _cardAnimation.Init(cardRect: _cardRect, playerViewer: _playerViewer, this);
     }
 
     private void InitActions()

@@ -26,14 +26,21 @@ public class TurnController : MonoBehaviour
 
         if (!_init)
         {
-            _turnValidator.OnPlayerTurnChanged += UpdatePlayerTurn;
+            SubscribeToEvents();
             _init = true;
         }
+    }
+
+    private void SubscribeToEvents()
+    {
+        _turnValidator.OnPlayerTurnChanged += UpdatePlayerTurn;
+        _turnValidator.OnTurnEnded += UpdatePlayersOrder;
     }
 
     private void OnDestroy()
     {
         _turnValidator.OnPlayerTurnChanged -= UpdatePlayerTurn;
+        _turnValidator.OnTurnEnded -= UpdatePlayersOrder;
     }
 
     public void UpdatePlayersOrder(PlayerData playerData = null)

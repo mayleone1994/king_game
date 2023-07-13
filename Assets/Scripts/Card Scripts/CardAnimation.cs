@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UIElements;
 using System;
+using KingGame;
 
 public class CardAnimation : MonoBehaviour
 {
@@ -12,20 +13,40 @@ public class CardAnimation : MonoBehaviour
 
     private RectTransform _cardRect;
     private PlayerViewer _playerViewer;
+    private CardHandler _cardHandler;
 
     private float _initialPosition_Y;
 
+    private PlayerWinnerData _playerWinnerData;
+
     private bool _init = false;
 
-    public void Init(RectTransform cardRect, PlayerViewer playerViewer)
+    public void Init(RectTransform cardRect, PlayerViewer playerViewer, CardHandler cardHandler)
     {
         if (_init) return;
 
         _cardRect = cardRect;
         _playerViewer = playerViewer;
         _initialPosition_Y = _cardRect.position.y;
-
+        _cardHandler = cardHandler;
+        SubscribeToEvents();
         _init = true;
+    }
+
+    private void SubscribeToEvents()
+    {
+        if (_init) return;
+
+        _cardHandler.TurnValidator.OnPlayerWinnerUpdated += SetExitAnimationDestination;
+    }
+
+    private void OnDestroy()
+    {
+        _cardHandler.TurnValidator.OnPlayerWinnerUpdated -= SetExitAnimationDestination;
+    }
+    public void DrawAnimation(Action callback)
+    {
+        // TODO
     }
 
     public void CardToBoardAnimation(Action callback)
@@ -48,11 +69,39 @@ public class CardAnimation : MonoBehaviour
 
     public void ExitAnimation(Action callback)
     {
-        // TODO
+        if(_playerViewer != _playerWinnerData.playerViewer)
+        {
+            _cardHandler.transform.SetParent(_playerWinnerData.playerViewer.BoardArea, true);
+        }
+
+        _playerWinnerData.cardData.CardHandler.CardViewer.ChangeUIOrderPriority();
+
+        Vector2 _exitAnimationDestination = _playerWinnerData.playerViewer.
+            GetComponent<RectTransform>().position;
+
+        StartCoroutine(StartExitAnimation(callback));
+
+        IEnumerator StartExitAnimation(Action callback)
+        {
+            yield return new WaitForSeconds(0.9f);
+
+            Vector2 screenCenter = new(Screen.width / 2, Screen.height / 2);
+
+            _cardRect.DOMove(screenCenter, 0.5F).OnComplete
+                (() => StartCoroutine(ExitAnimationAsync(callback)));
+
+            IEnumerator ExitAnimationAsync(Action callback)
+            {
+                yield return new WaitForSeconds(0.8f);
+
+                _cardRect.DOMove(_exitAnimationDestination, 0.4F).OnComplete
+                    (() => _cardHandler.CardAction.CallAction(CardAction.REMOVE, callback));
+            }
+        }
     }
 
-    public void DrawAnimation(Action callback)
+    private void SetExitAnimationDestination(PlayerWinnerData playerWinnerData)
     {
-        // TODO
+        _playerWinnerData = playerWinnerData;
     }
 }

@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-    [SerializeField] private MinMax _minAndMaxTimeToWaitForDecision;
-
-    private Coroutine _runAICorountineReference;
+    [SerializeField] private MinMax _waitTimeForDecision;
 
     private PlayerData _playerData;
 
@@ -42,13 +40,12 @@ public class AIController : MonoBehaviour
 
         CardData sortedCard = cardsOnHand[randIndex];
 
-        _runAICorountineReference = StartCoroutine(WaitToSelectCard(sortedCard));
+        StartCoroutine(WaitToSelectCard(sortedCard));
     }
 
     private IEnumerator WaitToSelectCard(CardData cardData)
     {
-        float randTime = UnityEngine.Random.Range(_minAndMaxTimeToWaitForDecision.min,
-            _minAndMaxTimeToWaitForDecision.max);
+        float randTime = UnityEngine.Random.Range(_waitTimeForDecision.min, _waitTimeForDecision.max);
 
         yield return new WaitForSeconds(randTime);
 

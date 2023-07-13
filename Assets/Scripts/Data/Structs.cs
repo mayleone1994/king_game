@@ -8,4 +8,10 @@ namespace KingGame
         public float min;
         public float max;
     }
+
+    public struct PlayerWinnerData
+    {
+        public PlayerViewer playerViewer;
+        public CardData cardData;
+    }
 }

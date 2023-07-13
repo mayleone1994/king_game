@@ -19,13 +19,17 @@ public class PlayersController : MonoBehaviour
 
     private PlayerData[] _playersData;
 
+    private ScoreController _scoreController;
+
     public PlayerData[] PlayersData => _playersData;
 
     public List<PlayerViewer> PlayersViewer => _playersViewer;
     public RectTransform PlayersContainer => _playersContainer;
 
-    public void InitPlayers()
+    public void InitPlayers(ScoreController scoreController)
     {
+        _scoreController = scoreController;
+
         CreatePlayersContainer();
     }
 
@@ -61,17 +65,20 @@ public class PlayersController : MonoBehaviour
         {
             int relativeIndex = Utils.GetRelativeIndex(i, _mainPlayerIndex, GameConstants.MAX_PLAYERS);
 
-            PlayerData playerData = new PlayerData(
-                name: $"Player {relativeIndex + 1}",
-                picture: null, 
-                id: i,
-                isMainPlayer: i == 0,
-                roomIndex: relativeIndex);
+            PlayerData playerData = new
+                (   name: $"Player {relativeIndex + 1}",
+                    picture: null, 
+                    id: i,
+                    isMainPlayer: i == 0,
+                    roomIndex: relativeIndex);
 
             _playersData[relativeIndex] = playerData;
+
             PlayerViewer playerViewer = _playersViewer[i];
+
             playerViewer.InitPlayerViewer(playerData, 
-                _safeAreaToCreateContainer.GetComponentInParent<Canvas>());
+                _safeAreaToCreateContainer.GetComponentInParent<Canvas>(),
+                _scoreController);
         }
     }
 }

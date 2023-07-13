@@ -11,6 +11,8 @@ namespace KingGame
 
         private bool _isPlayerTurn;
 
+        private int _currentScore = 0;
+
         public readonly long ID; // TODO: became this unique
         public readonly string Name;
         public readonly Sprite Picture;
@@ -19,6 +21,7 @@ namespace KingGame
         public int Wins => GetWinsValue();
         public List<CardData> CardsOnHand => _cardsOnHand;
         public bool IsPlayerTurn => _isPlayerTurn;
+        public int CurrentScore => _currentScore;
 
         public PlayerData(string name, Sprite picture, long id, int roomIndex, bool isMainPlayer)
         {
@@ -34,6 +37,11 @@ namespace KingGame
         public void SetCardsOnHand(List<CardData> cards)
         {
             _cardsOnHand = cards;
+        }
+
+        public void UpdateScore(int newValue)
+        {
+            _currentScore += newValue;
         }
 
         private void EventsSubscribe()

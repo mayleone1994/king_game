@@ -51,7 +51,7 @@ public class CardActions : MonoBehaviour
 
     private void CardToBoard(Action callback)
     {
-        _cardAnimation.CardToBoardAnimation(SelectCard);
+        _cardAnimation.CardToBoardAnimation(callback: SelectCard);
         _cardData.SetCardToBoardState();
 
         void SelectCard()

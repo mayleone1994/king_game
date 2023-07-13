@@ -19,7 +19,8 @@ public class CardsControllers : MonoBehaviour
         _cardPrefab = GetCardPrefab();
     }
 
-    public void CreateCardsForPlayer(PlayerViewer playerViewer, DeckController deckController)
+    public void CreateCardsForPlayer(PlayerViewer playerViewer, DeckController deckController, 
+        TurnValidatorController turnValidator)
     {
         List<CardData> playerCards = new List<CardData>();
 
@@ -38,7 +39,7 @@ public class CardsControllers : MonoBehaviour
                 cardHandler: cardHandler
                 );
 
-            cardHandler.Init(card, playerViewer);
+            cardHandler.Init(card, playerViewer, turnValidator);
 
             _cardsOnScene.Add(cardHandler);
 
