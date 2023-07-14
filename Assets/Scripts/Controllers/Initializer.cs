@@ -18,6 +18,7 @@ public class Initializer : MonoBehaviour
     [SerializeField] private TurnValidatorController    _turnValidatorController;
     [SerializeField] private ScoreController            _scoreController;
     [SerializeField] private AIController               _aiController;
+    [SerializeField] private SuitController             _suitController;
 
     private King_ServiceLocator _serviceLocator;
 
@@ -48,6 +49,8 @@ public class Initializer : MonoBehaviour
         _serviceLocator.SetController(typeof(TurnValidatorController), _turnValidatorController);
 
         _serviceLocator.SetController(typeof(ScoreController), _scoreController);
+
+        _serviceLocator.SetController(typeof(SuitController), _suitController);
 
         InitRoomConfigs();
     }
@@ -145,6 +148,19 @@ public class Initializer : MonoBehaviour
         }
 
         _scoreController.Init(_serviceLocator);
+
+        InitSuitController();
+    }
+
+    private void InitSuitController()
+    {
+        if (_suitController == null)
+        {
+            ShowInitError("Suit controller was not found");
+            return;
+        }
+
+        _suitController.Init(_serviceLocator);
 
         InitTurn();
     }
