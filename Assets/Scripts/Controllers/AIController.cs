@@ -4,20 +4,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIController : MonoBehaviour
+public class AIController : SubscriberBase, IController
 {
     [SerializeField] private MinMax _waitTimeForDecision;
 
     private PlayerData _playerData;
 
-    private void Awake()
+    private King_ServiceLocator _serviceLocator;
+
+    public void Init(King_ServiceLocator serviceLocator)
+    {
+        if(_init) return;
+
+        _serviceLocator = serviceLocator;
+
+        SubscribeToEvents();
+
+        _init = true;   
+    }
+
+    protected override void SubscribeToEvents()
     {
         TurnController.OnPlayerTurnUpdated += RunAIPlayer;
     }
 
-    private void OnDestroy()
+    protected override void UnsubscribeToEvents()
     {
         TurnController.OnPlayerTurnUpdated -= RunAIPlayer;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeToEvents();
     }
 
     private void RunAIPlayer(PlayerData playerData)

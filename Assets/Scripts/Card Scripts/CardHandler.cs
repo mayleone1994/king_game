@@ -9,12 +9,12 @@ public class CardHandler : MonoBehaviour
     // Dependencies
 
     [Header ("Dependencies")]
-    [SerializeField] private CardViewer _cardViewer;
-    [SerializeField] private CardInput _cardInput;
-    [SerializeField] private CardActions _cardActions;
-    [SerializeField] private CardAnimation _cardAnimation;
-    [SerializeField] private CardValidator _cardValidator;
-    [SerializeField] private CardPosition _cardPosition;
+    [SerializeField] private CardViewer        _cardViewer;
+    [SerializeField] private CardInput         _cardInput;
+    [SerializeField] private CardActions       _cardActions;
+    [SerializeField] private CardAnimation     _cardAnimation;
+    [SerializeField] private CardValidator     _cardValidator;
+    [SerializeField] private CardPosition      _cardPosition;
 
     [Header("Components")]
     [SerializeField] private Image _imageComponent;
@@ -27,12 +27,18 @@ public class CardHandler : MonoBehaviour
     private CardData _cardData;
     private TurnValidatorController _turnValidator;
 
-    public CardData CardData => _cardData;
+    public Image ImageComponent => _imageComponent;
+    public RaycastTarget RaycastTarget => _raycastTarget;
+    public RectTransform CardRect => _cardRect; 
     public PlayerViewer PlayerViewer => _playerViewer;
-    public CardActions CardAction => _cardActions;
-
-    public CardViewer CardViewer => _cardViewer;
+    public CardData CardData => _cardData;
     public TurnValidatorController TurnValidator => _turnValidator;
+    public CardViewer CardViewer => _cardViewer;
+    public CardInput CardInput => _cardInput;
+    public CardActions CardAction => _cardActions;
+    public CardAnimation CardAnimation => _cardAnimation;
+    public CardValidator CardValidator => _cardValidator;
+    public CardPosition CardPosition => _cardPosition;
 
     public void Init(CardData cardData, PlayerViewer playerViewer, TurnValidatorController turnValidator)
     {
@@ -61,31 +67,31 @@ public class CardHandler : MonoBehaviour
 
     private void InitViewer()
     {
-        _cardViewer.Init(cardData: _cardData, imageComponent: _imageComponent);
+        _cardViewer.InitModule(this);
     }
 
     private void InitAnimation()
     {
-        _cardAnimation.Init(cardRect: _cardRect, playerViewer: _playerViewer, this);
+        _cardAnimation.InitModule(this);
     }
 
     private void InitActions()
     {
-        _cardActions.Init(cardData: _cardData, cardAnimation: _cardAnimation, this);
+        _cardActions.InitModule(this);
     }
 
     private void InitValidator()
     {
-        _cardValidator.Init(cardData: _cardData, imageComponent: _imageComponent, raycastTarget: _raycastTarget);
+        _cardValidator.InitModule(this);
     }
 
     private void InitPosition()
     {
-        _cardPosition.Init(cardRect: _cardRect, canvas: _playerViewer.Canvas);
+        _cardPosition.InitModule(this);
     }
 
     private void InitInput()
     {
-        _cardInput.Init(cardData: _cardData, cardActions: _cardActions, cardPosition: _cardPosition);
+        _cardInput.InitModule(this);
     }
 }

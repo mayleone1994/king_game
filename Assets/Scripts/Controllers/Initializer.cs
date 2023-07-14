@@ -19,13 +19,36 @@ public class Initializer : MonoBehaviour
     [SerializeField] private ScoreController            _scoreController;
     [SerializeField] private AIController               _aiController;
 
-    private void Start()
+    private King_ServiceLocator _serviceLocator;
+
+    private void Awake()
     {
         InitGame();
     }
 
     private void InitGame()
     {
+        InitServiceLocator();
+    }
+
+    private void InitServiceLocator()
+    {
+        _serviceLocator = new King_ServiceLocator();
+
+        _serviceLocator.SetController(typeof(AIController), _aiController);
+
+        _serviceLocator.SetController(typeof(PlayersController), _playersController);
+
+        _serviceLocator.SetController(typeof(DeckController), _deckController);
+
+        _serviceLocator.SetController(typeof(CardsControllers), _cardsController);
+
+        _serviceLocator.SetController(typeof(TurnController), _turnController);
+
+        _serviceLocator.SetController(typeof(TurnValidatorController), _turnValidatorController);
+
+        _serviceLocator.SetController(typeof(ScoreController), _scoreController);
+
         InitRoomConfigs();
     }
 
@@ -37,7 +60,21 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _aiController.gameObject.SetActive(_roomConfig.RoomType != RoomType.ONLINE);
+        InitAIController();
+    }
+
+    private void InitAIController()
+    {
+        if (_aiController == null)
+        {
+            ShowInitError("AI Controller not found");
+            return;
+        }
+
+        if (_roomConfig.RoomType != RoomType.ONLINE)
+        {
+            _aiController.Init(_serviceLocator);
+        }
 
         InitPlayers();
     }
@@ -50,7 +87,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _playersController.InitPlayers(_scoreController);
+       _playersController.Init(_serviceLocator);
 
         InitDeck();
     }
@@ -63,7 +100,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _deckController.ShuffleDeck();
+        _deckController.Init(_serviceLocator);
 
         InitCards();
     }
@@ -79,7 +116,8 @@ public class Initializer : MonoBehaviour
        for (int i = 0; i < _playersController.PlayersViewer.Count; i++)
         {
             PlayerViewer playerViewer = _playersController.PlayersViewer[i];
-            _cardsController.CreateCardsForPlayer(playerViewer, _deckController, _turnValidatorController);
+            _cardsController.Init(_serviceLocator);
+            _cardsController.CreateCardsForPlayer(playerViewer);
         }
 
         InitTurnValidator();
@@ -93,20 +131,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _turnValidatorController.Init();
-
-        InitTurn();
-    }
-
-    private void InitTurn()
-    {
-        if(_turnController == null)
-        {
-            ShowInitError("Turn controller was not found");
-            return;
-        }
-
-        _turnController.InitTurnController(_playersController, _turnValidatorController);
+        _turnValidatorController.Init(_serviceLocator);
 
         InitScoreController();
     }
@@ -119,7 +144,22 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _scoreController.Init(_turnValidatorController);
+        _scoreController.Init(_serviceLocator);
+
+        InitTurn();
+    }
+
+    private void InitTurn()
+    {
+        if (_turnController == null)
+        {
+            ShowInitError("Turn controller was not found");
+            return;
+        }
+
+        _turnController.Init(_serviceLocator);
+
+        // END INITALIZATION
     }
 
     public void RestartGame()

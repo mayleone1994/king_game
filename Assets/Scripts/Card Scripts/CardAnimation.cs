@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 using System;
 using KingGame;
 
-public class CardAnimation : MonoBehaviour
+public class CardAnimation : SubscriberBase, ICardModule
 {
     [SerializeField] private float _cardToBoardTimeAnimation;
     [SerializeField] private float _cardToHandTimeAnimation;
@@ -19,30 +19,31 @@ public class CardAnimation : MonoBehaviour
 
     private PlayerWinnerData _playerWinnerData;
 
-    private bool _init = false;
-
-    public void Init(RectTransform cardRect, PlayerViewer playerViewer, CardHandler cardHandler)
+    public void InitModule(CardHandler cardHandler)
     {
         if (_init) return;
 
-        _cardRect = cardRect;
-        _playerViewer = playerViewer;
-        _initialPosition_Y = _cardRect.position.y;
         _cardHandler = cardHandler;
+        _cardRect = cardHandler.CardRect;
+        _playerViewer = cardHandler.PlayerViewer;
+        _initialPosition_Y = _cardRect.position.y;
         SubscribeToEvents();
         _init = true;
     }
 
-    private void SubscribeToEvents()
+    protected override void SubscribeToEvents()
     {
-        if (_init) return;
-
         _cardHandler.TurnValidator.OnPlayerWinnerUpdated += SetExitAnimationDestination;
+    }
+
+    protected override void UnsubscribeToEvents()
+    {
+        _cardHandler.TurnValidator.OnPlayerWinnerUpdated -= SetExitAnimationDestination;
     }
 
     private void OnDestroy()
     {
-        _cardHandler.TurnValidator.OnPlayerWinnerUpdated -= SetExitAnimationDestination;
+        UnsubscribeToEvents();
     }
     public void DrawAnimation(Action callback)
     {

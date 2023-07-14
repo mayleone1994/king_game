@@ -510,6 +510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIController
       objectReference: {fileID: 0}
+    - target: {fileID: 9030975829425046925, guid: bef52d0498749a143909f62796292a20, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: bef52d0498749a143909f62796292a20, type: 3}

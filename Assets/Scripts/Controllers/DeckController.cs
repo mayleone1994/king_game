@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckController : MonoBehaviour
+public class DeckController : MonoBehaviour, IController
 {
     [SerializeField] private DeckDataSO _currDeck;
 
@@ -13,12 +13,17 @@ public class DeckController : MonoBehaviour
 
     public Stack<CardDataSO> Deck => _cards;
 
+    public void Init(King_ServiceLocator serviceLocator)
+    {
+        ShuffleDeck();
+    }
+
     public bool HasDeck()
     {
         return _currDeck != null;
     }
 
-    public void ShuffleDeck()
+    private void ShuffleDeck()
     {
         _currDeck.Cards.Shuffle();
 

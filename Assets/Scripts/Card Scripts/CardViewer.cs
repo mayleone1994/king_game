@@ -5,35 +5,40 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class CardViewer : MonoBehaviour
+public class CardViewer : SubscriberBase, ICardModule
 {
     private CardData _cardData;
 
     private Image _imageComponent;
 
-    private bool _init = false;
+    public void InitModule(CardHandler cardHandler)
+    {
+        if (_init) return;
 
-    private void Awake()
+        _cardData = cardHandler.CardData;
+
+        _imageComponent = cardHandler.ImageComponent;
+
+        ShowSprite(_cardData.IsMainPlayer);
+
+        SubscribeToEvents();
+
+        _init = true;
+    }
+
+    protected override void SubscribeToEvents()
     {
         CardActions.OnCardSelected += SelectedCard;
     }
 
-    private void OnDestroy()
+    protected override void UnsubscribeToEvents()
     {
         CardActions.OnCardSelected -= SelectedCard;
     }
 
-    public void Init(CardData cardData, Image imageComponent)
+    private void OnDestroy()
     {
-        if (_init) return;
-
-        _cardData = cardData;
-
-        _imageComponent = imageComponent;
-
-        ShowSprite(_cardData.IsMainPlayer);
-
-        _init = true;
+        UnsubscribeToEvents();
     }
 
     public void ChangeUIOrderPriority()

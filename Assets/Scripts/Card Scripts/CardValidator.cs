@@ -4,34 +4,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardValidator : MonoBehaviour
+public class CardValidator : SubscriberBase, ICardModule
 {
     private Image _imageComponent;
     private RaycastTarget _raycastTarget;
     private CardData _cardData;
 
-    private bool _init = false;
-
-    private void Awake()
+    protected override void SubscribeToEvents()
     {
         TurnController.OnPlayerTurnUpdated += ValidateByTurn;
+        _cardData.OnCardStateUpdated += ValidateByStateChanges;
+    }
+
+    protected override void UnsubscribeToEvents()
+    {
+        TurnController.OnPlayerTurnUpdated -= ValidateByTurn;
+        _cardData.OnCardStateUpdated -= ValidateByStateChanges;
     }
 
     private void OnDestroy()
     {
-        TurnController.OnPlayerTurnUpdated -= ValidateByTurn;
-
-        _cardData.OnCardStateUpdated -= ValidateByStateChanges;
+        UnsubscribeToEvents();
     }
 
-    public void Init(Image imageComponent, CardData cardData, RaycastTarget raycastTarget)
+    public void InitModule(CardHandler cardHandler)
     {
         if (_init) return;
 
-        _imageComponent = imageComponent;
-        _cardData = cardData;
-        _raycastTarget = raycastTarget;
-        _cardData.OnCardStateUpdated += ValidateByStateChanges;
+        _imageComponent = cardHandler.ImageComponent;
+        _cardData = cardHandler.CardData;
+        _raycastTarget = cardHandler.RaycastTarget;
+        SubscribeToEvents();
 
         _init = true;
     }

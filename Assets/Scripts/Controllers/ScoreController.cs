@@ -4,34 +4,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreController : MonoBehaviour
+public class ScoreController : SubscriberBase, IController
 {
     public event Action<PlayerData, string> OnScoreUpdated;
 
     public const string DEFAULT_SCORE_TEXT = "Score:";
 
-    private TurnValidatorController _turnValidatorController;
-    private bool _init = false;
+    private King_ServiceLocator _serviceLocator;
 
-    public void Init(TurnValidatorController turnValidatorController)
+    private TurnValidatorController _turnValidatorController;
+
+    public void Init(King_ServiceLocator serviceLocator)
     {
         if (_init) return;
 
-        _turnValidatorController = turnValidatorController;
+        _serviceLocator = serviceLocator;
+
+        _turnValidatorController = _serviceLocator.GetController<TurnValidatorController>();
 
         SubscribeToEvents();
 
         _init = true;
     }
 
-    private void SubscribeToEvents()
+    protected override void SubscribeToEvents()
     {
         _turnValidatorController.OnTurnEnded += UpdatePlayerWinnerScore;
     }
 
-    private void OnDestroy()
+    protected override void UnsubscribeToEvents()
     {
         _turnValidatorController.OnTurnEnded -= UpdatePlayerWinnerScore;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeToEvents();
     }
 
     private void UpdatePlayerWinnerScore(PlayerData playerData)

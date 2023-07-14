@@ -155,7 +155,6 @@ GameObject:
   - component: {fileID: 4260768572634435780}
   - component: {fileID: 3966258758933306694}
   - component: {fileID: 498321853689428429}
-  - component: {fileID: 2056815726777207299}
   m_Layer: 5
   m_Name: CardViewer
   m_TagString: Untagged
@@ -203,7 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45cac60e293cb7418f38b6538873268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  s: {fileID: 2056815726777207299}
 --- !u!114 &498321853689428429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,18 +232,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!210 &2056815726777207299
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3120938040809958314}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortAtRoot: 0
 --- !u!1 &4302047102775555399
 GameObject:
   m_ObjectHideFlags: 0

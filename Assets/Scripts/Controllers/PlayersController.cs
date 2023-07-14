@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayersController : MonoBehaviour
+public class PlayersController : MonoBehaviour, IController
 {
     // TO DEBUG THE POSITION OF EACH PLAYER BY BOARD
     [SerializeField] private int _mainPlayerIndex;
@@ -21,14 +21,18 @@ public class PlayersController : MonoBehaviour
 
     private ScoreController _scoreController;
 
+    private King_ServiceLocator _serviceLocator;
+
     public PlayerData[] PlayersData => _playersData;
 
     public List<PlayerViewer> PlayersViewer => _playersViewer;
     public RectTransform PlayersContainer => _playersContainer;
 
-    public void InitPlayers(ScoreController scoreController)
+    public void Init(King_ServiceLocator serviceLocator)
     {
-        _scoreController = scoreController;
+        _serviceLocator = serviceLocator;
+
+        _scoreController = _serviceLocator.GetController<ScoreController>();
 
         CreatePlayersContainer();
     }

@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TurnValidatorController : MonoBehaviour
+public class TurnValidatorController : SubscriberBase, IController
 {
     private List<CardData> _cardsOnBoard;
 
     private PlayerData _playerWinner;
+
+    private King_ServiceLocator _serviceLocator;
 
     public event Action OnPlayerTurnChanged;
 
@@ -17,20 +19,34 @@ public class TurnValidatorController : MonoBehaviour
 
     public event Action<PlayerData> OnTurnEnded;
 
-    private void Awake()
+    public void Init(King_ServiceLocator serviceLocator)
+    {
+        _cardsOnBoard = new List<CardData>();
+
+        if (_init) return;
+
+        _serviceLocator = serviceLocator;
+
+        SubscribeToEvents();
+
+        _init = true;
+    }
+
+    protected override void SubscribeToEvents()
     {
         CardActions.OnCardSelected += OnCardSelected;
     }
 
-    private void OnDestroy()
+    protected override void UnsubscribeToEvents()
     {
         CardActions.OnCardSelected -= OnCardSelected;
     }
 
-    public void Init()
+    private void OnDestroy()
     {
-        _cardsOnBoard = new List<CardData>();
+        UnsubscribeToEvents();
     }
+
 
     private void OnCardSelected(CardData cardData)
     {

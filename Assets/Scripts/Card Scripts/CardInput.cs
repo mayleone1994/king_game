@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(EventTrigger))]
 
-public class CardInput : MonoBehaviour
+public class CardInput : SubscriberBase, ICardModule
 {
     private static event Action<CardData> _onCardSelected;
     private static event Action _onCardUnselected;
@@ -19,26 +19,31 @@ public class CardInput : MonoBehaviour
 
     private CardPosition _cardPosition;
 
-    private bool _init = false;
-
-    private void Awake()
+    protected override void SubscribeToEvents()
     {
         _onCardSelected += SetSelectedCard;
         _onCardUnselected += SetUnselectedCard;
     }
-    private void OnDestroy()
+
+    protected override void UnsubscribeToEvents()
     {
         _onCardSelected -= SetSelectedCard;
         _onCardUnselected -= SetUnselectedCard;
     }
 
-    public void Init(CardData cardData, CardActions cardActions, CardPosition cardPosition)
+    private void OnDestroy()
+    {
+        UnsubscribeToEvents();
+    }
+
+    public void InitModule(CardHandler cardHandler)
     {
         if (_init) return;
 
-        _cardData = cardData;
-        _cardActions = cardActions;
-        _cardPosition = cardPosition;
+        _cardData = cardHandler.CardData;
+        _cardActions = cardHandler.CardAction;
+        _cardPosition = cardHandler.CardPosition;
+        SubscribeToEvents();
         _init = true;
     }
 

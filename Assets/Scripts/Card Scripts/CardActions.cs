@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CardActions : MonoBehaviour
+public class CardActions : MonoBehaviour, ICardModule
 {
     public static event Action<CardData> OnCardSelected;
 
@@ -16,13 +16,13 @@ public class CardActions : MonoBehaviour
     private CardHandler _cardHandler;
     private bool _init = false;
 
-   public void Init(CardData cardData, CardAnimation cardAnimation, CardHandler cardHandler)
+   public void InitModule(CardHandler cardHandler)
     {
         if(_init) return;
 
-        _cardData = cardData;
-        _cardAnimation = cardAnimation;
         _cardHandler = cardHandler;
+        _cardData = cardHandler.CardData;
+        _cardAnimation = cardHandler.CardAnimation;
         InitDict();
         _init = true;
     }

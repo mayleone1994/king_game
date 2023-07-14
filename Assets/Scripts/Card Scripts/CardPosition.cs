@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using KingGame;
 
-public class CardPosition : MonoBehaviour
+public class CardPosition : MonoBehaviour, ICardModule
 {
     private RectTransform _cardRect;
     private Canvas _canvas;
@@ -14,12 +14,12 @@ public class CardPosition : MonoBehaviour
 
     private bool _init = false;
 
-    public void Init(RectTransform cardRect, Canvas canvas)
+    public void InitModule(CardHandler cardHandler)
     {
         if (_init) return;
 
-        _cardRect = cardRect;
-        _canvas = canvas;
+        _cardRect = cardHandler.CardRect;
+        _canvas = cardHandler.PlayerViewer.Canvas;
         _initialPosition_Y = _cardRect.transform.position.y;
 
         _init = true;

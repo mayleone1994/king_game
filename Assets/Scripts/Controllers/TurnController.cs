@@ -4,8 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Linq.Expressions;
 
-public class TurnController : MonoBehaviour
+public class TurnController : SubscriberBase, IController
 {
     public static event Action<PlayerData> OnPlayerTurnUpdated;
 
@@ -15,32 +16,40 @@ public class TurnController : MonoBehaviour
 
     private Queue<PlayerData> _playersOrder;
 
-    private bool _init = false;
+    private King_ServiceLocator _serviceLocator;
 
-    public void InitTurnController(PlayersController playersController, TurnValidatorController turnValidator)
+    public void Init(King_ServiceLocator serviceLocator)
     {
-        _playersController = playersController;
-        _turnValidator = turnValidator;
+        _serviceLocator = serviceLocator;
+
+        _playersController = _serviceLocator.GetController<PlayersController>();
+
+        _turnValidator = _serviceLocator.GetController<TurnValidatorController>();
 
         UpdatePlayersOrder();
 
-        if (!_init)
-        {
-            SubscribeToEvents();
-            _init = true;
-        }
+        if (_init) return;
+
+        SubscribeToEvents();
+
+        _init = true;
     }
 
-    private void SubscribeToEvents()
+    protected override void SubscribeToEvents()
     {
         _turnValidator.OnPlayerTurnChanged += UpdatePlayerTurn;
         _turnValidator.OnTurnEnded += UpdatePlayersOrder;
     }
 
-    private void OnDestroy()
+    protected override void UnsubscribeToEvents()
     {
         _turnValidator.OnPlayerTurnChanged -= UpdatePlayerTurn;
         _turnValidator.OnTurnEnded -= UpdatePlayersOrder;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeToEvents();
     }
 
     public void UpdatePlayersOrder(PlayerData playerData = null)
