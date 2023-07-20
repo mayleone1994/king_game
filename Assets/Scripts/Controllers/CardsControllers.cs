@@ -29,9 +29,6 @@ public class CardsControllers : MonoBehaviour, IController
 
         DeckController deckController = _serviceLocator.GetController<DeckController>();
 
-        TurnValidatorController turnValidatorController = 
-            _serviceLocator.GetController<TurnValidatorController>();
-
         for (int i = 0; i < GameConstants.CARDS_PER_PLAYER; i++)
         {
             CardDataSO cardData = deckController.Deck.Pop();
@@ -52,6 +49,11 @@ public class CardsControllers : MonoBehaviour, IController
         }
 
         playerViewer.PlayerData.SetCardsOnHand(playerCards);
+
+        if (playerViewer.PlayerData.IsMainPlayer)
+        {
+            playerViewer.SortCardsOnHandByValue();
+        }
     }
 
     public void DestroyCardsInstances()
