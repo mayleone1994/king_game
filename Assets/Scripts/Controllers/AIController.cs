@@ -33,11 +33,6 @@ public class AIController : SubscriberBase, IController
         TurnController.OnPlayerTurnUpdated -= RunAIPlayer;
     }
 
-    private void OnDestroy()
-    {
-        UnsubscribeToEvents();
-    }
-
     private void RunAIPlayer(PlayerData playerData)
     {
         if (playerData.IsMainPlayer) return;

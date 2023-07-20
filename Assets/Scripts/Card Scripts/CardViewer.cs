@@ -36,11 +36,6 @@ public class CardViewer : SubscriberBase, ICardModule
         CardActions.OnCardSelected -= SelectedCard;
     }
 
-    private void OnDestroy()
-    {
-        UnsubscribeToEvents();
-    }
-
     public void ChangeUIOrderPriority()
     {
         _cardData.CardHandler.transform.SetAsLastSibling();

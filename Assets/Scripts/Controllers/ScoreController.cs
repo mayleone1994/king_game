@@ -37,11 +37,6 @@ public class ScoreController : SubscriberBase, IController
         _turnValidatorController.OnTurnEnded -= UpdatePlayerWinnerScore;
     }
 
-    private void OnDestroy()
-    {
-        UnsubscribeToEvents();
-    }
-
     private void UpdatePlayerWinnerScore(PlayerData playerData)
     {
         // TODO

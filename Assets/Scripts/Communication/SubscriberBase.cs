@@ -6,4 +6,9 @@ public abstract class SubscriberBase : MonoBehaviour
 
     protected abstract void SubscribeToEvents();
     protected abstract void UnsubscribeToEvents();
+
+    protected virtual void OnDestroy()
+    {
+        UnsubscribeToEvents();
+    }
 }

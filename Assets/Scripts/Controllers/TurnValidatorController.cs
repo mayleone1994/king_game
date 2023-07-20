@@ -18,6 +18,7 @@ public class TurnValidatorController : SubscriberBase, IController
     public event Action<PlayerWinnerData> OnPlayerWinnerUpdated;
 
     public event Action<PlayerData> OnTurnEnded;
+    public List<CardData> CardsOnBoard => _cardsOnBoard;
 
     public void Init(King_ServiceLocator serviceLocator)
     {
@@ -41,12 +42,6 @@ public class TurnValidatorController : SubscriberBase, IController
     {
         CardActions.OnCardSelected -= OnCardSelected;
     }
-
-    private void OnDestroy()
-    {
-        UnsubscribeToEvents();
-    }
-
 
     private void OnCardSelected(CardData cardData)
     {

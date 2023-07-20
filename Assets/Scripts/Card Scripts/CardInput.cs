@@ -31,11 +31,6 @@ public class CardInput : SubscriberBase, ICardModule
         _onCardUnselected -= SetUnselectedCard;
     }
 
-    private void OnDestroy()
-    {
-        UnsubscribeToEvents();
-    }
-
     public void InitModule(CardHandler cardHandler)
     {
         if (_init) return;

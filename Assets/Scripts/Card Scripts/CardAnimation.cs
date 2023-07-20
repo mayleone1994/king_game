@@ -41,10 +41,6 @@ public class CardAnimation : SubscriberBase, ICardModule
         _cardHandler.TurnValidator.OnPlayerWinnerUpdated -= SetExitAnimationDestination;
     }
 
-    private void OnDestroy()
-    {
-        UnsubscribeToEvents();
-    }
     public void DrawAnimation(Action callback)
     {
         // TODO

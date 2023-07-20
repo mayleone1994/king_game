@@ -47,11 +47,6 @@ public class TurnController : SubscriberBase, IController
         _turnValidator.OnTurnEnded -= UpdatePlayersOrder;
     }
 
-    private void OnDestroy()
-    {
-        UnsubscribeToEvents();
-    }
-
     public void UpdatePlayersOrder(PlayerData playerData = null)
     {
         _playersOrder = new();

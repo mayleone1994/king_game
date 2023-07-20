@@ -22,11 +22,6 @@ public class CardValidator : SubscriberBase, ICardModule
         _cardData.OnCardStateUpdated -= ValidateByStateChanges;
     }
 
-    private void OnDestroy()
-    {
-        UnsubscribeToEvents();
-    }
-
     public void InitModule(CardHandler cardHandler)
     {
         if (_init) return;
