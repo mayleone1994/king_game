@@ -9,6 +9,22 @@ public class CardValidator : SubscriberBase, ICardModule
     private Image _imageComponent;
     private RaycastTarget _raycastTarget;
     private CardData _cardData;
+    private SuitController _suitController;
+
+    public bool IsValidaSuitToPlay => HasValidSuit();
+
+    public void InitModule(CardHandler cardHandler)
+    {
+        if (_init) return;
+
+        _imageComponent = cardHandler.ImageComponent;
+        _cardData = cardHandler.CardData;
+        _raycastTarget = cardHandler.RaycastTarget;
+        _suitController = cardHandler.ServiceLocator.GetController<SuitController>();
+        SubscribeToEvents();
+
+        _init = true;
+    }
 
     protected override void SubscribeToEvents()
     {
@@ -22,17 +38,6 @@ public class CardValidator : SubscriberBase, ICardModule
         _cardData.OnCardStateUpdated -= ValidateByStateChanges;
     }
 
-    public void InitModule(CardHandler cardHandler)
-    {
-        if (_init) return;
-
-        _imageComponent = cardHandler.ImageComponent;
-        _cardData = cardHandler.CardData;
-        _raycastTarget = cardHandler.RaycastTarget;
-        SubscribeToEvents();
-
-        _init = true;
-    }
     private void ValidateByTurn(PlayerData playerData = null)
     {
         SetCardInteraction(CardIsAvailableToPlay());
@@ -90,6 +95,6 @@ public class CardValidator : SubscriberBase, ICardModule
 
     private bool HasValidSuit()
     {
-        return true; // TODO
+        return _suitController.IsValidSuitToPlay(_cardData);
     }
 }

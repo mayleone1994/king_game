@@ -44,7 +44,7 @@ public class CardsControllers : MonoBehaviour, IController
                 playerData: playerViewer.PlayerData,
                 cardHandler: cardHandler);
 
-            cardHandler.Init(card, playerViewer, turnValidatorController);
+            cardHandler.Init(card, playerViewer, _serviceLocator);
 
             _cardsOnScene.Add(cardHandler);
 

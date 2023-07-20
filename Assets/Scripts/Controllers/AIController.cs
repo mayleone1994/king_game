@@ -2,6 +2,7 @@ using KingGame;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AIController : SubscriberBase, IController
@@ -47,13 +48,14 @@ public class AIController : SubscriberBase, IController
         // TODO
         // Stategy to select a card
 
-        List<CardData> cardsOnHand = _playerData.CardsOnHand;
+        List<CardData> cardsAvailableToPlay = _playerData.CardsOnHand.Where
+            (c => c.CardHandler.CardValidator.IsValidaSuitToPlay).ToList();
 
-        int randIndex = UnityEngine.Random.Range(0, cardsOnHand.Count);
+        int randIndex = UnityEngine.Random.Range(0, cardsAvailableToPlay.Count);
 
-        CardData sortedCard = cardsOnHand[randIndex];
+        CardData randomizedCard = cardsAvailableToPlay[randIndex];
 
-        StartCoroutine(WaitToSelectCard(sortedCard));
+        StartCoroutine(WaitToSelectCard(randomizedCard));
     }
 
     private IEnumerator WaitToSelectCard(CardData cardData)

@@ -25,14 +25,14 @@ public class CardHandler : MonoBehaviour
 
     private PlayerViewer _playerViewer;
     private CardData _cardData;
-    private TurnValidatorController _turnValidator;
+    private King_ServiceLocator _serviceLocator;
 
+    public King_ServiceLocator ServiceLocator => _serviceLocator;
     public Image ImageComponent => _imageComponent;
     public RaycastTarget RaycastTarget => _raycastTarget;
     public RectTransform CardRect => _cardRect; 
     public PlayerViewer PlayerViewer => _playerViewer;
     public CardData CardData => _cardData;
-    public TurnValidatorController TurnValidator => _turnValidator;
     public CardViewer CardViewer => _cardViewer;
     public CardInput CardInput => _cardInput;
     public CardActions CardAction => _cardActions;
@@ -40,7 +40,7 @@ public class CardHandler : MonoBehaviour
     public CardValidator CardValidator => _cardValidator;
     public CardPosition CardPosition => _cardPosition;
 
-    public void Init(CardData cardData, PlayerViewer playerViewer, TurnValidatorController turnValidator)
+    public void Init(CardData cardData, PlayerViewer playerViewer, King_ServiceLocator serviceLocator)
     {
         if (_init) return;
 
@@ -48,7 +48,7 @@ public class CardHandler : MonoBehaviour
 
         _playerViewer = playerViewer;
 
-        _turnValidator = turnValidator;
+        _serviceLocator = serviceLocator;
 
         InitViewer();
 

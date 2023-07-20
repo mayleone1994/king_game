@@ -9,6 +9,8 @@ public class CardActions : MonoBehaviour, ICardModule
 {
     public static event Action<CardData> OnCardSelected;
 
+    public static event Action<CardData> OnUpdateCardSuit;
+
     private Dictionary<CardAction, Action<Action>> _cardActions;
 
     private CardData _cardData;
@@ -53,6 +55,7 @@ public class CardActions : MonoBehaviour, ICardModule
     {
         _cardAnimation.CardToBoardAnimation(callback: SelectCard);
         _cardData.SetCardToBoardState();
+        OnUpdateCardSuit?.Invoke(_cardData);
 
         void SelectCard()
         {

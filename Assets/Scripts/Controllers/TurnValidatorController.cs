@@ -13,6 +13,8 @@ public class TurnValidatorController : SubscriberBase, IController
 
     private King_ServiceLocator _serviceLocator;
 
+    private SuitController _suitController;
+
     public event Action OnPlayerTurnChanged;
 
     public event Action<PlayerWinnerData> OnPlayerWinnerUpdated;
@@ -27,6 +29,8 @@ public class TurnValidatorController : SubscriberBase, IController
         if (_init) return;
 
         _serviceLocator = serviceLocator;
+
+        _suitController = _serviceLocator.GetController<SuitController>();
 
         SubscribeToEvents();
 
@@ -60,7 +64,10 @@ public class TurnValidatorController : SubscriberBase, IController
 
     private void ValidateCardWinner()
     {
-        CardData cardWinner = _cardsOnBoard.OrderByDescending(c => c.Value).ToList()[0];
+        List<CardData> cardsWithTargetSuit = _cardsOnBoard.Where
+            (c => c.Suit == _suitController.CurrentSuit).ToList();
+
+        CardData cardWinner = cardsWithTargetSuit.OrderByDescending(c => c.Value).ToList()[0];
 
         _playerWinner = cardWinner.PlayerData;
 
