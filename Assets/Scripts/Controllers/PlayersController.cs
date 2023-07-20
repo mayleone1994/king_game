@@ -19,8 +19,6 @@ public class PlayersController : MonoBehaviour, IController
 
     private PlayerData[] _playersData;
 
-    private ScoreController _scoreController;
-
     private King_ServiceLocator _serviceLocator;
 
     public PlayerData[] PlayersData => _playersData;
@@ -31,8 +29,6 @@ public class PlayersController : MonoBehaviour, IController
     public void Init(King_ServiceLocator serviceLocator)
     {
         _serviceLocator = serviceLocator;
-
-        _scoreController = _serviceLocator.GetController<ScoreController>();
 
         CreatePlayersContainer();
     }
@@ -82,7 +78,7 @@ public class PlayersController : MonoBehaviour, IController
 
             playerViewer.InitPlayerViewer(playerData, 
                 _safeAreaToCreateContainer.GetComponentInParent<Canvas>(),
-                _scoreController);
+                _serviceLocator);
         }
     }
 }

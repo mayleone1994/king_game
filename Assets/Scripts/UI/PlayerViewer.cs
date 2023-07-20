@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
-public class PlayerViewer : MonoBehaviour
+public class PlayerViewer : SubscriberBase
 {
     [Header("Components")]
     [SerializeField] private HorizontalLayoutGroup _cardsOnHand;
@@ -20,8 +20,6 @@ public class PlayerViewer : MonoBehaviour
 
     private ScoreController _scoreController;
 
-    private bool _init = false;
-
     public PlayerData PlayerData => _playerData;
 
     public RectTransform RectTransform => this.GetComponent<RectTransform>();
@@ -30,7 +28,7 @@ public class PlayerViewer : MonoBehaviour
 
     public Canvas Canvas => _canvas;
 
-    public void InitPlayerViewer(PlayerData playerData, Canvas canvas, ScoreController scoreController)
+    public void InitPlayerViewer(PlayerData playerData, Canvas canvas, King_ServiceLocator serviceLocator)
     {
         if (_init) return;
 
@@ -38,7 +36,7 @@ public class PlayerViewer : MonoBehaviour
 
         _canvas = canvas;
 
-        _scoreController = scoreController;
+        _scoreController = serviceLocator.GetController<ScoreController>();
 
         SetPlayerName(_playerData.Name);
 
@@ -49,13 +47,12 @@ public class PlayerViewer : MonoBehaviour
         _init = true;
     }
 
-
-    private void SubscribeToEvents()
+    protected override void SubscribeToEvents()
     {
         _scoreController.OnScoreUpdated += UpdateScoreValue;
     }
 
-    private void OnDestroy()
+    protected override void UnsubscribeToEvents()
     {
         _scoreController.OnScoreUpdated -= UpdateScoreValue;
     }
