@@ -39,7 +39,7 @@ public class PlayersController : MonoBehaviour, IController
 
     private void CreatePlayersContainer()
     {
-        GameObject prefab = _prefabsController.GetPrefab(PrefabKey.PLAYERS_CONTAINER);
+        GameObject prefab = _prefabsController.GetPrefab(PrefabKey.PLAYERS_CONTAINER_PREFAB);
 
         _playersContainer = Instantiate(
             prefab, _safeAreaToCreateContainer.transform).GetComponent<RectTransform>();
