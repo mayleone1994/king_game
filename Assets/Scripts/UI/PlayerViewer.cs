@@ -1,7 +1,6 @@
 using KingGame;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,31 +45,6 @@ public class PlayerViewer : SubscriberBase
         SubscribeToEvents();
 
         _init = true;
-    }
-
-    public void SortCardsOnHandByValue()
-    {
-        List<CardData> sortedCards = _playerData.CardsOnHand.
-            OrderBy(c => c.Suit).ThenByDescending(c => c.Value).ToList();
-
-        List<CardHandler> cardInstances = new();
-
-        for (int i = 0; i < _cardsOnHand.transform.childCount; i++)
-        {
-            var currentCard = _cardsOnHand.transform.GetChild(i).GetComponent<CardHandler>();
-
-            if (currentCard == null)
-                continue;
-
-            cardInstances.Add(currentCard);
-        }
-
-        for (int i = 0; i < sortedCards.Count; i++)
-        {
-            var cardInstance = cardInstances.FirstOrDefault(c => c.GetComponent<CardHandler>().CardData == sortedCards[i]);
-
-            cardInstance.transform.SetAsFirstSibling();
-        }
     }
 
     protected override void SubscribeToEvents()

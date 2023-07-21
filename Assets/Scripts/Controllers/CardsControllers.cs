@@ -2,6 +2,7 @@ using KingGame;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardsControllers : MonoBehaviour, IController
@@ -29,9 +30,11 @@ public class CardsControllers : MonoBehaviour, IController
 
         DeckController deckController = _serviceLocator.GetController<DeckController>();
 
-        for (int i = 0; i < GameConstants.CARDS_PER_PLAYER; i++)
+        List<CardDataSO> playerHand = CreatePlayerHand(deckController.Deck);
+
+        for (int i = 0; i < playerHand.Count; i++)
         {
-            CardDataSO cardData = deckController.Deck.Pop();
+            CardDataSO cardData = playerHand[i];
 
             CardHandler cardHandler = Instantiate(_cardPrefab, playerViewer.RectTransform.transform);
 
@@ -49,11 +52,6 @@ public class CardsControllers : MonoBehaviour, IController
         }
 
         playerViewer.PlayerData.SetCardsOnHand(playerCards);
-
-        if (playerViewer.PlayerData.IsMainPlayer)
-        {
-            playerViewer.SortCardsOnHandByValue();
-        }
     }
 
     public void DestroyCardsInstances()
@@ -65,6 +63,20 @@ public class CardsControllers : MonoBehaviour, IController
         }
 
         _cardsOnScene.Clear();
+    }
+
+    private List<CardDataSO> CreatePlayerHand(Stack<CardDataSO> deck)
+    {
+        List<CardDataSO> playerHand = new();
+
+        for(int i = 0; i < GameConstants.CARDS_PER_PLAYER; i++)
+        {
+            playerHand.Add(deck.Pop());
+        }
+
+        playerHand = playerHand.OrderByDescending(c => c.Suit).ThenBy(c => c.Value).ToList();
+
+        return playerHand;
     }
 
     private CardHandler GetCardPrefab()
