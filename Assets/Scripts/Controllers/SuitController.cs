@@ -112,10 +112,7 @@ public class SuitController : SubscriberBase, IController
 
     private bool PlayerHasTargetSuitToPlay(PlayerData playerData)
     {
-        List<CardData> cardsWithTargetSuit = 
-            playerData.CardsOnHand.Where(c => c.Suit == _currentSuit).ToList();
-
-        return cardsWithTargetSuit.Count > 0;
+        return playerData.CardsOnHand.Count(c => c.Suit == _currentSuit) > 0;
     }
 
     private bool PlayerOnlyHasSuitRestriction(PlayerData playerData)
