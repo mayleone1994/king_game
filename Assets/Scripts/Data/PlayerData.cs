@@ -46,13 +46,13 @@ namespace KingGame
 
         private void EventsSubscribe()
         {
-            TurnController.OnPlayerTurnUpdated += UpdatePlayerTurn;
+            TurnController.OnNextPlayer += UpdatePlayerTurn;
         }
 
         // To avoid memory leak
         private void EventsUnsubscribe()
         {
-            TurnController.OnPlayerTurnUpdated -= UpdatePlayerTurn;
+            TurnController.OnNextPlayer -= UpdatePlayerTurn;
         }
         private void UpdatePlayerTurn(PlayerData player)
         {

@@ -26,12 +26,12 @@ public class AIController : SubscriberBase, IController
 
     protected override void SubscribeToEvents()
     {
-        TurnController.OnPlayerTurnUpdated += RunAIPlayer;
+        TurnController.OnNextPlayer += RunAIPlayer;
     }
 
     protected override void UnsubscribeToEvents()
     {
-        TurnController.OnPlayerTurnUpdated -= RunAIPlayer;
+        TurnController.OnNextPlayer -= RunAIPlayer;
     }
 
     private void RunAIPlayer(PlayerData playerData)

@@ -36,12 +36,12 @@ public class CardAnimation : SubscriberBase, ICardModule
 
     protected override void SubscribeToEvents()
     {
-        _turnValidator.OnPlayerWinnerUpdated += SetExitAnimationDestination;
+        _turnValidator.OnChangePlayerWinner += SetExitAnimationDestination;
     }
 
     protected override void UnsubscribeToEvents()
     {
-        _turnValidator.OnPlayerWinnerUpdated -= SetExitAnimationDestination;
+        _turnValidator.OnChangePlayerWinner -= SetExitAnimationDestination;
     }
 
     public void DrawAnimation(Action callback)

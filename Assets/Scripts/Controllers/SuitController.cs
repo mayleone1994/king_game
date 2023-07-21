@@ -71,14 +71,14 @@ public class SuitController : SubscriberBase, IController
     protected override void SubscribeToEvents()
     {
         CardActions.OnUpdateCardSuit += SetCurrentSuit;
-        _turnValidatorController.OnPlayerTurnChanged += SetCardsOnBoard;
+        _turnValidatorController.OnNextPlayer += SetCardsOnBoard;
         _turnValidatorController.OnTurnEnded += ResetCurrentSuit;
     }
 
     protected override void UnsubscribeToEvents()
     {
         CardActions.OnUpdateCardSuit -= SetCurrentSuit;
-        _turnValidatorController.OnPlayerTurnChanged -= SetCardsOnBoard;
+        _turnValidatorController.OnNextPlayer -= SetCardsOnBoard;
         _turnValidatorController.OnTurnEnded -= ResetCurrentSuit;
     }
 

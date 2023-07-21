@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 public class TurnController : SubscriberBase, IController
 {
-    public static event Action<PlayerData> OnPlayerTurnUpdated;
+    public static event Action<PlayerData> OnNextPlayer;
 
     private PlayersController _playersController;
 
@@ -37,13 +37,13 @@ public class TurnController : SubscriberBase, IController
 
     protected override void SubscribeToEvents()
     {
-        _turnValidator.OnPlayerTurnChanged += UpdatePlayerTurn;
+        _turnValidator.OnNextPlayer += UpdatePlayerTurn;
         _turnValidator.OnTurnEnded += UpdatePlayersOrder;
     }
 
     protected override void UnsubscribeToEvents()
     {
-        _turnValidator.OnPlayerTurnChanged -= UpdatePlayerTurn;
+        _turnValidator.OnNextPlayer -= UpdatePlayerTurn;
         _turnValidator.OnTurnEnded -= UpdatePlayersOrder;
     }
 
@@ -77,6 +77,6 @@ public class TurnController : SubscriberBase, IController
     {
         PlayerData currentPlayer = _playersOrder.Dequeue();
 
-        OnPlayerTurnUpdated?.Invoke(currentPlayer);
+        OnNextPlayer?.Invoke(currentPlayer);
     }
 }

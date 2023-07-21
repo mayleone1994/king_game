@@ -28,13 +28,13 @@ public class CardValidator : SubscriberBase, ICardModule
 
     protected override void SubscribeToEvents()
     {
-        TurnController.OnPlayerTurnUpdated += ValidateByTurn;
+        TurnController.OnNextPlayer += ValidateByTurn;
         _cardData.OnCardStateUpdated += ValidateByStateChanges;
     }
 
     protected override void UnsubscribeToEvents()
     {
-        TurnController.OnPlayerTurnUpdated -= ValidateByTurn;
+        TurnController.OnNextPlayer -= ValidateByTurn;
         _cardData.OnCardStateUpdated -= ValidateByStateChanges;
     }
 

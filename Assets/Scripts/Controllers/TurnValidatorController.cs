@@ -15,9 +15,9 @@ public class TurnValidatorController : SubscriberBase, IController
 
     private SuitController _suitController;
 
-    public event Action OnPlayerTurnChanged;
+    public event Action OnNextPlayer;
 
-    public event Action<PlayerWinnerData> OnPlayerWinnerUpdated;
+    public event Action<PlayerWinnerData> OnChangePlayerWinner;
 
     public event Action<PlayerData> OnTurnEnded;
     public List<CardData> CardsOnBoard => _cardsOnBoard;
@@ -58,7 +58,7 @@ public class TurnValidatorController : SubscriberBase, IController
         } else
         {
             // Otherwise, it's next player's turn
-            OnPlayerTurnChanged?.Invoke();
+            OnNextPlayer?.Invoke();
         }
     }
 
@@ -77,7 +77,7 @@ public class TurnValidatorController : SubscriberBase, IController
             cardData = cardWinner,
         };
 
-        OnPlayerWinnerUpdated?.Invoke(playerWinnerData);
+        OnChangePlayerWinner?.Invoke(playerWinnerData);
 
         ProcessEndValidation();
     }
