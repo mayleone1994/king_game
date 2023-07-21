@@ -28,17 +28,17 @@ public class CardValidator : SubscriberBase, ICardModule
 
     protected override void SubscribeToEvents()
     {
-        TurnController.OnNextPlayer += ValidateByTurn;
-        _cardData.OnCardStateUpdated += ValidateByStateChanges;
+        TurnController.OnNextPlayer += DoValidation;
+        CardData.OnCardStateUpdated += HasSelectedCard;
     }
 
     protected override void UnsubscribeToEvents()
     {
-        TurnController.OnNextPlayer -= ValidateByTurn;
-        _cardData.OnCardStateUpdated -= ValidateByStateChanges;
+        TurnController.OnNextPlayer -= DoValidation;
+        CardData.OnCardStateUpdated -= HasSelectedCard;
     }
 
-    private void ValidateByTurn(PlayerData playerData = null)
+    private void DoValidation(PlayerData playerData = null)
     {
         SetCardInteraction(CardIsAvailableToPlay());
 
@@ -51,9 +51,13 @@ public class CardValidator : SubscriberBase, ICardModule
         }
     }
 
-    private void ValidateByStateChanges()
+    private void HasSelectedCard(CardData data)
     {
-        SetCardInteraction(CardIsAvailableToPlay());
+        if (data.PlayerData != _cardData.PlayerData)
+            return;
+
+        SetCardInteraction(false);
+        SetCardColor(false);
     }
 
     private void SetCardInteraction(bool state)

@@ -4,7 +4,7 @@ namespace KingGame
 {
     public class CardData
     {
-        public event System.Action OnCardStateUpdated;
+        public static event System.Action<CardData> OnCardStateUpdated;
 
         public readonly string Name;
         public readonly Sprite Sprite;
@@ -31,7 +31,6 @@ namespace KingGame
             VerseSprite = verseSprite;
             CardHandler = cardHandler;
             _cardState = CardState.ON_HAND;
-            OnCardStateUpdated?.Invoke();
         }
 
         public void SetCardToBoardState()
@@ -41,7 +40,7 @@ namespace KingGame
 
             PlayerData.CardsOnHand.Remove(this);
             _cardState = CardState.ON_BOARD;
-            OnCardStateUpdated?.Invoke();
+            OnCardStateUpdated?.Invoke(this);
         }
     }
 }
