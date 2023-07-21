@@ -36,21 +36,21 @@ public class Initializer : MonoBehaviour
     {
         _serviceLocator = new King_ServiceLocator();
 
-        _serviceLocator.SetController(typeof(AIController), _aiController);
+        _serviceLocator.SetController(_aiController.GetType(), _aiController);
 
-        _serviceLocator.SetController(typeof(PlayersController), _playersController);
+        _serviceLocator.SetController(_playersController.GetType(), _playersController);
 
-        _serviceLocator.SetController(typeof(DeckController), _deckController);
+        _serviceLocator.SetController(_deckController.GetType(), _deckController);
 
-        _serviceLocator.SetController(typeof(CardsControllers), _cardsController);
+        _serviceLocator.SetController(_cardsController.GetType(), _cardsController);
 
-        _serviceLocator.SetController(typeof(TurnController), _turnController);
+        _serviceLocator.SetController(_turnController.GetType(), _turnController);
 
-        _serviceLocator.SetController(typeof(TurnValidatorController), _turnValidatorController);
+        _serviceLocator.SetController(_turnValidatorController.GetType(), _turnValidatorController);
 
-        _serviceLocator.SetController(typeof(ScoreController), _scoreController);
+        _serviceLocator.SetController(_scoreController.GetType(), _scoreController);
 
-        _serviceLocator.SetController(typeof(SuitController), _suitController);
+        _serviceLocator.SetController(_suitController.GetType(), _suitController);
 
         InitRoomConfigs();
     }
