@@ -116,12 +116,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-       for (int i = 0; i < _playersController.PlayersViewer.Count; i++)
-        {
-            PlayerViewer playerViewer = _playersController.PlayersViewer[i];
-            _cardsController.Init(_serviceLocator);
-            _cardsController.CreateCardsForPlayer(playerViewer);
-        }
+        _cardsController.Init(_serviceLocator);
 
         InitTurnValidator();
     }

@@ -15,14 +15,24 @@ public class CardsControllers : MonoBehaviour, IController
 
     private King_ServiceLocator _serviceLocator;
 
+    private PlayersController _playersController;
+
     public void Init(King_ServiceLocator serviceLocator)
     {
         _cardPrefab = GetCardPrefab();
 
         _serviceLocator = serviceLocator;
+
+        _playersController = _serviceLocator.GetController<PlayersController>();
+
+        for (int i = 0; i < _playersController.PlayersViewer.Count; i++)
+        {
+            PlayerViewer playerViewer = _playersController.PlayersViewer[i];
+            CreateCardsForPlayer(playerViewer);
+        }
     }
 
-    public void CreateCardsForPlayer(PlayerViewer playerViewer)
+    private void CreateCardsForPlayer(PlayerViewer playerViewer)
     {
         List<CardData> playerCards = new();
 
