@@ -51,6 +51,7 @@ public class SuitController : SubscriberBase, IController
             {
                 if (PlayerOnlyHasSuitRestriction(cardData.PlayerData))
                 {
+                    ResetCurrentSuit();
                     return true;
                 } 
                 else
