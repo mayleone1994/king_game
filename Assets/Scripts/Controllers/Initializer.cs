@@ -19,6 +19,7 @@ public class Initializer : MonoBehaviour
     [SerializeField] private ScoreController            _scoreController;
     [SerializeField] private AIController               _aiController;
     [SerializeField] private SuitController             _suitController;
+    [SerializeField] private RulesController            _rulesController;
 
     private King_ServiceLocator _serviceLocator;
 
@@ -51,6 +52,8 @@ public class Initializer : MonoBehaviour
         _serviceLocator.SetController(_scoreController.GetType(), _scoreController);
 
         _serviceLocator.SetController(_suitController.GetType(), _suitController);
+
+        _serviceLocator.SetController(_rulesController.GetType(), _rulesController);
 
         InitRoomConfigs();
     }
@@ -117,6 +120,19 @@ public class Initializer : MonoBehaviour
         }
 
         _cardsController.Init(_serviceLocator);
+
+        InitRules();
+    }
+
+    private void InitRules()
+    {
+        if(_rulesController == null)
+        {
+            ShowInitError("Rules controller was not found");
+            return;
+        }
+
+        _rulesController.Init(_serviceLocator);
 
         InitTurnValidator();
     }

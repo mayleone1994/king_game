@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41cbb7d3539705438fb711df8b20a88, type: 3}
+  m_Name: NoHearts
+  m_EditorClassIdentifier: 
+  _ruleCategory: 2
+  _ruleName: Sem Copas
+  _ruleArt: {fileID: 0}
+  _suitRestriction: 0
+  _ruleScoreValue: 20
+  _ruleOrder: 2
+  _ruleDescription: "Voc\xEA n\xE3o pode ganhar rodadas que possuem cartas do naipe
+    <b>COPAS</b> na mesa.\r\nSe voc\xEA ganhar a rodada com copas, ser\xE3o descontados
+    da sua pontua\xE7\xE3o 20 pontos para cada copas na mesa.\r\nPor exemplo: Se
+    na rodada ganha tiver 2 cartas com o naipe de copas na mesa, o vencedor da rodada
+    perder\xE1 40 pontos: <b>(20+20)</b>\r\nVoc\xEA tamb\xE9m n\xE3o pode jogar uma
+    carta de copas na mesa at\xE9 que outra carta deste naipe j\xE1 tenha sido jogada,
+    ou se voc\xEA tiver alguma carta na m\xE3o que contenha o naipe da rodada."

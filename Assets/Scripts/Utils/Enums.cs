@@ -12,7 +12,8 @@ namespace KingGame
 
     public enum Rule
     {
-        NO_WINS, NO_HEARTS, NO_WOMAN, NO_MEN, NO_KING, NO_WIN_TWO_LAST, TO_UP
+        NO_TRICKS = 1, NO_HEARTS = 2, NO_MEN = 3, NO_QUEENS = 4, NO_KING = 5, 
+        NO_LAST_TWO_TRICKS = 6, TO_UP = 7
     };
 
     public enum DeckType

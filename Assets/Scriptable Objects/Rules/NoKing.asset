@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41cbb7d3539705438fb711df8b20a88, type: 3}
+  m_Name: NoKing
+  m_EditorClassIdentifier: 
+  _ruleCategory: 5
+  _ruleName: Sem o King
+  _ruleArt: {fileID: 0}
+  _suitRestriction: 0
+  _ruleScoreValue: 160
+  _ruleOrder: 2
+  _ruleDescription: "O desafio dessa regra \xE9 n\xE3o ganhar a rodada que possuir
+    o <b>KING</b> (rei de copas) na mesa.\r\nO vencedor da rodada com o King na mesa
+    perder\xE1 160 pontos.\r\nNessa regra \xE9 pro\xEDbido jogar cartas com o naipe
+    de copas at\xE9 que esse naipe tenha sido jogado antes, a n\xE3o ser que voc\xEA
+    n\xE3o tenha na m\xE3o cartas com o naipe atual."
