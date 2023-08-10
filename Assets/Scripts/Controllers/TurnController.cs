@@ -6,26 +6,21 @@ using UnityEngine;
 using System.Linq;
 using System.Linq.Expressions;
 
-public class TurnController : SubscriberBase, IController
+public class TurnController : SubscriberBase, IController, IDependent<PlayersDataController>
 {
     public static event Action<PlayerData> OnNextPlayer;
 
-    private PlayersDataController _playersController;
-
-    private TurnValidatorController _turnValidator;
+    private PlayersDataController _playersDataController;
 
     private Queue<PlayerData> _playersOrder;
 
-    private King_ServiceLocator _serviceLocator;
+    public void SetDependency(PlayersDataController dependency)
+    {
+        _playersDataController = dependency;
+    }
 
     public void Init(King_ServiceLocator serviceLocator)
     {
-        _serviceLocator = serviceLocator;
-
-        _playersController = _serviceLocator.GetController<PlayersDataController>();
-
-        _turnValidator = _serviceLocator.GetController<TurnValidatorController>();
-
         UpdatePlayersOrder();
 
         if (_init) return;
@@ -37,21 +32,21 @@ public class TurnController : SubscriberBase, IController
 
     protected override void SubscribeToEvents()
     {
-        _turnValidator.OnNextPlayer += UpdatePlayerTurn;
-        _turnValidator.OnTurnEnded += UpdatePlayersOrder;
+        TurnValidatorController.OnNextPlayer += UpdatePlayerTurn;
+        TurnValidatorController.OnTurnEnded += UpdatePlayersOrder;
     }
 
     protected override void UnsubscribeToEvents()
     {
-        _turnValidator.OnNextPlayer -= UpdatePlayerTurn;
-        _turnValidator.OnTurnEnded -= UpdatePlayersOrder;
+        TurnValidatorController.OnNextPlayer -= UpdatePlayerTurn;
+        TurnValidatorController.OnTurnEnded -= UpdatePlayersOrder;
     }
 
     public void UpdatePlayersOrder(PlayerData playerData = null)
     {
         _playersOrder = new();
 
-        PlayerData[] players = _playersController.PlayersData;
+        PlayerData[] players = _playersDataController.PlayersData;
 
         int max = players.Length;
 

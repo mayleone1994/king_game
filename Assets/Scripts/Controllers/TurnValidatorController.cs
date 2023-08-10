@@ -13,11 +13,11 @@ public class TurnValidatorController : SubscriberBase, IController
 
     private CardSuit _currentCardSuit;
 
-    public event Action OnNextPlayer;
+    public static event Action OnNextPlayer;
 
     public static event Action<PlayerWinnerData> OnChangePlayerWinner;
 
-    public event Action<PlayerData> OnTurnEnded;
+    public static event Action<PlayerData> OnTurnEnded;
     public List<CardData> CardsOnBoard => _cardsOnBoard;
 
     public void Init(King_ServiceLocator serviceLocator)

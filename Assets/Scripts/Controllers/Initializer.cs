@@ -209,6 +209,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
+        _turnController.SetDependency(_playerDataController);
         _turnController.Init(_serviceLocator);
 
         // END INITALIZATION
