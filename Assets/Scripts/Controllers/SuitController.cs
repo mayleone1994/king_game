@@ -10,7 +10,6 @@ public class SuitController : SubscriberBase, IController
     public static event Action<CardSuit> OnCurrentSuitChanged;
 
     private King_ServiceLocator _serviceLocator;
-    private TurnValidatorController _turnValidatorController;
     private List<CardData> _cardsOnBoard;
     private CardSuit _suitRestriction;
     private CardSuit _currentSuit;
@@ -20,8 +19,6 @@ public class SuitController : SubscriberBase, IController
         if(_init) return;
 
         _cardsOnBoard = new();
-        _serviceLocator = serviceLocator;
-        _turnValidatorController = _serviceLocator.GetController<TurnValidatorController>();
         ResetCurrentSuit();
         SetSuitRestriction();
         SubscribeToEvents();
@@ -73,20 +70,20 @@ public class SuitController : SubscriberBase, IController
     protected override void SubscribeToEvents()
     {
         CardActions.OnUpdateCardSuit += SetCurrentSuit;
-        _turnValidatorController.OnNextPlayer += SetCardsOnBoard;
-        _turnValidatorController.OnTurnEnded += ResetCurrentSuit;
+        TurnValidatorController.OnCardsOnBoardUpdated += SetCardsOnBoard;
+        TurnValidatorController.OnTurnEnded += ResetCurrentSuit;
     }
 
     protected override void UnsubscribeToEvents()
     {
         CardActions.OnUpdateCardSuit -= SetCurrentSuit;
-        _turnValidatorController.OnNextPlayer -= SetCardsOnBoard;
-        _turnValidatorController.OnTurnEnded -= ResetCurrentSuit;
+        TurnValidatorController.OnCardsOnBoardUpdated -= SetCardsOnBoard;
+        TurnValidatorController.OnTurnEnded -= ResetCurrentSuit;
     }
 
-    private void SetCardsOnBoard()
+    private void SetCardsOnBoard(List<CardData> cardsOnBoard)
     {
-        _cardsOnBoard = _turnValidatorController.CardsOnBoard;
+        _cardsOnBoard = cardsOnBoard;
     }
 
     private void SetCurrentSuit(CardData data)

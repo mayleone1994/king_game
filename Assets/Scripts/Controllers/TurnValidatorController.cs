@@ -18,7 +18,8 @@ public class TurnValidatorController : SubscriberBase, IController
     public static event Action<PlayerWinnerData> OnChangePlayerWinner;
 
     public static event Action<PlayerData> OnTurnEnded;
-    public List<CardData> CardsOnBoard => _cardsOnBoard;
+
+    public static Action<List<CardData>> OnCardsOnBoardUpdated;
 
     public void Init(King_ServiceLocator serviceLocator)
     {
@@ -51,6 +52,7 @@ public class TurnValidatorController : SubscriberBase, IController
     private void OnCardSelected(CardData cardData)
     {
         _cardsOnBoard.Add(cardData);
+        OnCardsOnBoardUpdated?.Invoke(_cardsOnBoard);
 
         // All players has selected one card at this turn
         if(_cardsOnBoard.Count == GameConstants.MAX_PLAYERS)
