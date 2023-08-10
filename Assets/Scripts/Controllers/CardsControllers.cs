@@ -5,29 +5,40 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CardsControllers : MonoBehaviour, IController
+
+// TODO: This class must be improve
+public class CardsControllers : MonoBehaviour, IController, 
+    IDependent<PrefabsControllerSO>, IDependent<PlayersViewerController>, IDependent<DeckController>
 {
-    [SerializeField] PrefabsControllerSO _prefabsController;
-
+    private DeckController _deckController;
+    private PlayersViewerController _playersViewerController;
+    private PrefabsControllerSO _prefabsController;
     private CardHandler _cardPrefab;
-
     private List<CardHandler> _cardsOnScene = new List<CardHandler>();
 
-    private King_ServiceLocator _serviceLocator;
 
-    private PlayersViewerController _playersController;
+    public void SetDependency(PrefabsControllerSO dependency)
+    {
+        _prefabsController = dependency;
+    }
+
+    public void SetDependency(PlayersViewerController dependency)
+    {
+        _playersViewerController = dependency;
+    }
+
+    public void SetDependency(DeckController dependency)
+    {
+        _deckController = dependency;
+    }
 
     public void Init(King_ServiceLocator serviceLocator)
     {
         _cardPrefab = GetCardPrefab();
 
-        _serviceLocator = serviceLocator;
-
-        _playersController = _serviceLocator.GetController<PlayersViewerController>();
-
-        for (int i = 0; i < _playersController.PlayersViewer.Count; i++)
+        for (int i = 0; i < _playersViewerController.PlayersViewer.Count; i++)
         {
-            PlayerViewer playerViewer = _playersController.PlayersViewer[i];
+            PlayerViewer playerViewer = _playersViewerController.PlayersViewer[i];
             CreateCardsForPlayer(playerViewer);
         }
     }
@@ -38,9 +49,7 @@ public class CardsControllers : MonoBehaviour, IController
 
         _cardPrefab ??= GetCardPrefab();
 
-        DeckController deckController = _serviceLocator.GetController<DeckController>();
-
-        List<CardDataSO> playerHand = CreatePlayerHand(deckController.Deck);
+        List<CardDataSO> playerHand = CreatePlayerHand(_deckController.Deck);
 
         for (int i = 0; i < playerHand.Count; i++)
         {
@@ -50,11 +59,11 @@ public class CardsControllers : MonoBehaviour, IController
 
             CardData card = new (
                 data: cardData, 
-                verseSprite: deckController.GetCurrentDeckVerse(), 
+                verseSprite: _deckController.GetCurrentDeckVerse(), 
                 playerData: playerViewer.PlayerData,
                 cardHandler: cardHandler);
 
-            cardHandler.Init(card, playerViewer, _serviceLocator);
+            cardHandler.Init(card, playerViewer);
 
             _cardsOnScene.Add(cardHandler);
 

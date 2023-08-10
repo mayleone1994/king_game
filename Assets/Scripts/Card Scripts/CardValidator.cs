@@ -9,6 +9,7 @@ public class CardValidator : SubscriberBase, ICardModule
     private Image _imageComponent;
     private RaycastTarget _raycastTarget;
     private CardData _cardData;
+
     private SuitController _suitController;
 
     public bool IsValidaSuitToPlay => HasValidSuit();
@@ -17,10 +18,12 @@ public class CardValidator : SubscriberBase, ICardModule
     {
         if (_init) return;
 
+        // TODO: improve this method to avoid something like this:
+        _suitController = FindObjectOfType<SuitController>();
+
         _imageComponent = cardHandler.ImageComponent;
         _cardData = cardHandler.CardData;
         _raycastTarget = cardHandler.RaycastTarget;
-        _suitController = cardHandler.ServiceLocator.GetController<SuitController>();
         SubscribeToEvents();
 
         _init = true;
@@ -99,6 +102,9 @@ public class CardValidator : SubscriberBase, ICardModule
 
     private bool HasValidSuit()
     {
+        if (_suitController == null)
+            return false;
+
         return _suitController.IsValidSuitToPlay(_cardData);
     }
 }

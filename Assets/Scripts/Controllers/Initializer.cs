@@ -8,6 +8,7 @@ public class Initializer : MonoBehaviour
 
     [Header("Configs")]
     [SerializeField] private RoomConfigSO _roomConfig;
+    [SerializeField] private PrefabsControllerSO _prefabsSO;
 
 
     [Header("Controller Dependencies")]
@@ -138,6 +139,10 @@ public class Initializer : MonoBehaviour
             ShowInitError("Cards controller was not found");
             return;
         }
+
+        _cardsController.SetDependency(_prefabsSO);
+        _cardsController.SetDependency(_deckController);
+        _cardsController.SetDependency(_playerViewerController);
 
         _cardsController.Init(_serviceLocator);
 

@@ -19,8 +19,6 @@ public class CardAnimation : SubscriberBase, ICardModule
 
     private PlayerWinnerData _playerWinnerData;
 
-    private TurnValidatorController _turnValidator;
-
     public void InitModule(CardHandler cardHandler)
     {
         if (_init) return;
@@ -29,19 +27,18 @@ public class CardAnimation : SubscriberBase, ICardModule
         _cardRect = cardHandler.CardRect;
         _playerViewer = cardHandler.PlayerViewer;
         _initialPosition_Y = _cardRect.position.y;
-        _turnValidator = _cardHandler.ServiceLocator.GetController<TurnValidatorController>();
         SubscribeToEvents();
         _init = true;
     }
 
     protected override void SubscribeToEvents()
     {
-        _turnValidator.OnChangePlayerWinner += SetExitAnimationDestination;
+        TurnValidatorController.OnChangePlayerWinner += SetExitAnimationDestination;
     }
 
     protected override void UnsubscribeToEvents()
     {
-        _turnValidator.OnChangePlayerWinner -= SetExitAnimationDestination;
+        TurnValidatorController.OnChangePlayerWinner -= SetExitAnimationDestination;
     }
 
     public void DrawAnimation(Action callback)

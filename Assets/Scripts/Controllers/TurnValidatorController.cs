@@ -17,7 +17,7 @@ public class TurnValidatorController : SubscriberBase, IController
 
     public event Action OnNextPlayer;
 
-    public event Action<PlayerWinnerData> OnChangePlayerWinner;
+    public static event Action<PlayerWinnerData> OnChangePlayerWinner;
 
     public event Action<PlayerData> OnTurnEnded;
     public List<CardData> CardsOnBoard => _cardsOnBoard;
