@@ -109,6 +109,8 @@ public class Initializer : MonoBehaviour
             return;
         }
 
+        _playerViewerController.SetDependency(_playerDataController);
+
         _playerViewerController.Init(_serviceLocator);
 
         InitDeck();

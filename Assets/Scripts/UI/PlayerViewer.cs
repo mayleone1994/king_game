@@ -18,8 +18,6 @@ public class PlayerViewer : SubscriberBase
 
     private PlayerData _playerData;
 
-    private ScoreController _scoreController;
-
     public PlayerData PlayerData => _playerData;
 
     public RectTransform RectTransform => this.GetComponent<RectTransform>();
@@ -28,15 +26,13 @@ public class PlayerViewer : SubscriberBase
 
     public Canvas Canvas => _canvas;
 
-    public void InitPlayerViewer(PlayerData playerData, Canvas canvas, King_ServiceLocator serviceLocator)
+    public void InitPlayerViewer(PlayerData playerData, Canvas canvas)
     {
         if (_init) return;
 
         _playerData = playerData;
 
         _canvas = canvas;
-
-        _scoreController = serviceLocator.GetController<ScoreController>();
 
         SetPlayerName(_playerData.Name);
 
@@ -49,12 +45,12 @@ public class PlayerViewer : SubscriberBase
 
     protected override void SubscribeToEvents()
     {
-        _scoreController.OnScoreUpdated += UpdateScoreValue;
+        ScoreController.OnScoreUpdated += UpdateScoreValue;
     }
 
     protected override void UnsubscribeToEvents()
     {
-        _scoreController.OnScoreUpdated -= UpdateScoreValue;
+        ScoreController.OnScoreUpdated -= UpdateScoreValue;
     }
 
     private void SetPlayerName(string name)

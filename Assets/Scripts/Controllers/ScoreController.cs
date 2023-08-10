@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ScoreController : SubscriberBase, IController
 {
-    public event Action<PlayerData, string> OnScoreUpdated;
+    public static event Action<PlayerData, string> OnScoreUpdated;
 
     public const string DEFAULT_SCORE_TEXT = "Score:";
 

@@ -12,14 +12,10 @@ public class PlayersDataController : MonoBehaviour, IController
 
     private PlayerData[] _playersData;
 
-    private King_ServiceLocator _serviceLocator;
-
     public PlayerData[] PlayersData => _playersData;
 
     public void Init(King_ServiceLocator serviceLocator)
     {
-        _serviceLocator = serviceLocator;
-
         CreatePlayersData();
     }
 
