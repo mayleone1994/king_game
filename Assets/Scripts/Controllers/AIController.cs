@@ -5,19 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AIController : SubscriberBase, IController
+public class AIController : SubscriberBase, IController, IDependent<RoomConfigSO>
 {
-    [SerializeField] private MinMax _waitTimeForDecision;
+    private RoomConfigSO _roomConfigData;
+
+    private MinMax _waitTimeForDecision;
 
     private PlayerData _playerData;
 
-    private King_ServiceLocator _serviceLocator;
+    public void SetDependency(RoomConfigSO dependency)
+    {
+        _roomConfigData = dependency;
+    }
 
     public void Init(King_ServiceLocator serviceLocator)
     {
         if(_init) return;
 
-        _serviceLocator = serviceLocator;
+        _waitTimeForDecision = _roomConfigData.AI_Definition_WaitTimeForDecision;
 
         SubscribeToEvents();
 

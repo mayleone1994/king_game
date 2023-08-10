@@ -83,6 +83,7 @@ public class Initializer : MonoBehaviour
 
         if (_roomConfig.RoomType != RoomType.ONLINE)
         {
+            _aiController.SetDependency(_roomConfig);
             _aiController.Init(_serviceLocator);
         }
 
