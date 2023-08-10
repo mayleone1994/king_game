@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckController : MonoBehaviour, IController, IDependent<DeckDataSO>
+public class DeckController : MonoBehaviour, IDependent<DeckDataSO>, IController
 {
     private DeckDataSO _deckData;
 
@@ -11,14 +11,14 @@ public class DeckController : MonoBehaviour, IController, IDependent<DeckDataSO>
 
     public Stack<CardDataSO> Deck => _deck;
 
-    public void Init(King_ServiceLocator serviceLocator)
-    {
-        ShuffleDeck();
-    }
-
     public void SetDependency(DeckDataSO dependency)
     {
         _deckData = dependency;
+    }
+
+    public void Init(King_ServiceLocator s)
+    {
+        ShuffleDeck();
     }
 
     private void ShuffleDeck()
