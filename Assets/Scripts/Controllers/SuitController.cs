@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class SuitController : SubscriberBase, IController
 {
+    public static event Action<CardSuit> OnCurrentSuitChanged;
+
     private King_ServiceLocator _serviceLocator;
     private TurnValidatorController _turnValidatorController;
     private List<CardData> _cardsOnBoard;
     private CardSuit _suitRestriction;
     private CardSuit _currentSuit;
-
-    public CardSuit CurrentSuit => _currentSuit;
 
     public void Init(King_ServiceLocator serviceLocator)
     {
@@ -33,7 +34,7 @@ public class SuitController : SubscriberBase, IController
         // TODO
         // Update according rule's suit restriction
 
-        _suitRestriction= CardSuit.NONE;
+        _suitRestriction = CardSuit.NONE;
     }
 
     public bool IsValidSuitToPlay(CardData cardData)
@@ -94,11 +95,15 @@ public class SuitController : SubscriberBase, IController
             return;
 
         _currentSuit = data.Suit;
+
+        OnCurrentSuitChanged?.Invoke(_currentSuit);
     }
 
     private void ResetCurrentSuit(PlayerData data = null)
     {
         _currentSuit = CardSuit.NONE;
+
+        OnCurrentSuitChanged?.Invoke(_currentSuit);
     }
 
     private bool HasCardsOnBoard()

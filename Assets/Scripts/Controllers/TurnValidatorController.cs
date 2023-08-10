@@ -11,9 +11,7 @@ public class TurnValidatorController : SubscriberBase, IController
 
     private PlayerData _playerWinner;
 
-    private King_ServiceLocator _serviceLocator;
-
-    private SuitController _suitController;
+    private CardSuit _currentCardSuit;
 
     public event Action OnNextPlayer;
 
@@ -28,10 +26,6 @@ public class TurnValidatorController : SubscriberBase, IController
 
         if (_init) return;
 
-        _serviceLocator = serviceLocator;
-
-        _suitController = _serviceLocator.GetController<SuitController>();
-
         SubscribeToEvents();
 
         _init = true;
@@ -40,11 +34,18 @@ public class TurnValidatorController : SubscriberBase, IController
     protected override void SubscribeToEvents()
     {
         CardActions.OnCardSelected += OnCardSelected;
+        SuitController.OnCurrentSuitChanged += SetCurrentCardSuit;
     }
 
     protected override void UnsubscribeToEvents()
     {
         CardActions.OnCardSelected -= OnCardSelected;
+        SuitController.OnCurrentSuitChanged -= SetCurrentCardSuit;
+    }
+
+    private void SetCurrentCardSuit(CardSuit suit)
+    {
+        _currentCardSuit = suit;
     }
 
     private void OnCardSelected(CardData cardData)
@@ -65,7 +66,7 @@ public class TurnValidatorController : SubscriberBase, IController
     private void ValidateCardWinner()
     {
         List<CardData> cardsWithTargetSuit = _cardsOnBoard.Where
-            (c => c.Suit == _suitController.CurrentSuit).ToList();
+            (c => c.Suit == _currentCardSuit).ToList();
 
         CardData cardWinner = cardsWithTargetSuit.OrderByDescending(c => c.Value).ToList()[0];
 
