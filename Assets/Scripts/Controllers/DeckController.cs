@@ -16,7 +16,7 @@ public class DeckController : MonoBehaviour, IDependent<DeckDataSO>, IController
         _deckData = dependency;
     }
 
-    public void Init(King_ServiceLocator s)
+    public void Init()
     {
         ShuffleDeck();
     }

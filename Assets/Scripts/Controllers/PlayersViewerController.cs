@@ -19,7 +19,7 @@ public class PlayersViewerController : MonoBehaviour, IController, IDependent<Pl
         _playersDataController = dependency;
     }
 
-    public void Init(King_ServiceLocator serviceLocator)
+    public void Init()
     {
         GameObject prefab = _prefabsController.GetPrefab(PrefabKey.PLAYERS_CONTAINER_PREFAB);
 

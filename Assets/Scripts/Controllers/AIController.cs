@@ -18,7 +18,7 @@ public class AIController : SubscriberBase, IController, IDependent<RoomConfigSO
         _roomConfigData = dependency;
     }
 
-    public void Init(King_ServiceLocator serviceLocator)
+    public void Init()
     {
         if(_init) return;
 

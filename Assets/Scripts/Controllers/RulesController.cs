@@ -6,7 +6,7 @@ using KingGame;
 public class RulesController : SubscriberBase, IController
 {
     [SerializeField] private RuleDataSO[] _rules;
-    public void Init(King_ServiceLocator serviceLocator)
+    public void Init()
     {
         if (_init) return;
 

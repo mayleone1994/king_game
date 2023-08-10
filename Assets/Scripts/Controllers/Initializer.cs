@@ -23,8 +23,6 @@ public class Initializer : MonoBehaviour
     [SerializeField] private SuitController              _suitController;
     [SerializeField] private RulesController             _rulesController;
 
-    private King_ServiceLocator _serviceLocator;
-
     private void Awake()
     {
         InitGame();
@@ -32,33 +30,6 @@ public class Initializer : MonoBehaviour
 
     private void InitGame()
     {
-        InitServiceLocator();
-    }
-
-    private void InitServiceLocator()
-    {
-        _serviceLocator = new King_ServiceLocator();
-
-        _serviceLocator.SetController(_aiController.GetType(), _aiController);
-
-        _serviceLocator.SetController(_playerDataController.GetType(), _playerDataController);
-
-        _serviceLocator.SetController(_playerViewerController.GetType(), _playerViewerController);
-
-        _serviceLocator.SetController(_deckController.GetType(), _deckController);
-
-        _serviceLocator.SetController(_cardsController.GetType(), _cardsController);
-
-        _serviceLocator.SetController(_turnController.GetType(), _turnController);
-
-        _serviceLocator.SetController(_turnValidatorController.GetType(), _turnValidatorController);
-
-        _serviceLocator.SetController(_scoreController.GetType(), _scoreController);
-
-        _serviceLocator.SetController(_suitController.GetType(), _suitController);
-
-        _serviceLocator.SetController(_rulesController.GetType(), _rulesController);
-
         InitRoomConfigs();
     }
 
@@ -84,7 +55,7 @@ public class Initializer : MonoBehaviour
         if (_roomConfig.RoomType != RoomType.ONLINE)
         {
             _aiController.SetDependency(_roomConfig);
-            _aiController.Init(_serviceLocator);
+            _aiController.Init();
         }
 
         InitDataPlayers();
@@ -98,7 +69,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-       _playerDataController.Init(_serviceLocator);
+       _playerDataController.Init();
 
         InitViewerPlayers();
     }
@@ -113,7 +84,7 @@ public class Initializer : MonoBehaviour
 
         _playerViewerController.SetDependency(_playerDataController);
 
-        _playerViewerController.Init(_serviceLocator);
+        _playerViewerController.Init();
 
         InitDeck();
     }
@@ -128,7 +99,7 @@ public class Initializer : MonoBehaviour
 
         _deckController.SetDependency(_roomConfig.RoomDeckData);
 
-        _deckController.Init(_serviceLocator);
+        _deckController.Init();
 
         InitCards();
     }
@@ -145,7 +116,7 @@ public class Initializer : MonoBehaviour
         _cardsController.SetDependency(_deckController);
         _cardsController.SetDependency(_playerViewerController);
 
-        _cardsController.Init(_serviceLocator);
+        _cardsController.Init();
 
         InitRules();
     }
@@ -158,7 +129,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _rulesController.Init(_serviceLocator);
+        _rulesController.Init();
 
         InitTurnValidator();
     }
@@ -171,7 +142,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _turnValidatorController.Init(_serviceLocator);
+        _turnValidatorController.Init();
 
         InitScoreController();
     }
@@ -184,7 +155,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _scoreController.Init(_serviceLocator);
+        _scoreController.Init();
 
         InitSuitController();
     }
@@ -197,7 +168,7 @@ public class Initializer : MonoBehaviour
             return;
         }
 
-        _suitController.Init(_serviceLocator);
+        _suitController.Init();
 
         InitTurn();
     }
@@ -211,7 +182,7 @@ public class Initializer : MonoBehaviour
         }
 
         _turnController.SetDependency(_playerDataController);
-        _turnController.Init(_serviceLocator);
+        _turnController.Init();
 
         // END INITALIZATION
     }

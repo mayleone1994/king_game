@@ -11,7 +11,7 @@ public class ScoreController : SubscriberBase, IController
     public const string DEFAULT_SCORE_TEXT = "Score:";
 
 
-    public void Init(King_ServiceLocator serviceLocator)
+    public void Init()
     {
         if (_init) return;
 

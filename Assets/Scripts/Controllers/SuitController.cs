@@ -9,12 +9,11 @@ public class SuitController : SubscriberBase, IController
 {
     public static event Action<CardSuit> OnCurrentSuitChanged;
 
-    private King_ServiceLocator _serviceLocator;
     private List<CardData> _cardsOnBoard;
     private CardSuit _suitRestriction;
     private CardSuit _currentSuit;
 
-    public void Init(King_ServiceLocator serviceLocator)
+    public void Init()
     {
         if(_init) return;
 

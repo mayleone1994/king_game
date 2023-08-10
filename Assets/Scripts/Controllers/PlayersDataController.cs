@@ -14,7 +14,7 @@ public class PlayersDataController : MonoBehaviour, IController
 
     public PlayerData[] PlayersData => _playersData;
 
-    public void Init(King_ServiceLocator serviceLocator)
+    public void Init()
     {
         CreatePlayersData();
     }

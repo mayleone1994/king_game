@@ -21,7 +21,7 @@ public class TurnValidatorController : SubscriberBase, IController
 
     public static Action<List<CardData>> OnCardsOnBoardUpdated;
 
-    public void Init(King_ServiceLocator serviceLocator)
+    public void Init()
     {
         _cardsOnBoard = new List<CardData>();
 

@@ -19,7 +19,7 @@ public class TurnController : SubscriberBase, IController, IDependent<PlayersDat
         _playersDataController = dependency;
     }
 
-    public void Init(King_ServiceLocator serviceLocator)
+    public void Init()
     {
         UpdatePlayersOrder();
 

@@ -32,7 +32,7 @@ public class CardsControllers : MonoBehaviour, IController,
         _deckController = dependency;
     }
 
-    public void Init(King_ServiceLocator serviceLocator)
+    public void Init()
     {
         _cardPrefab = GetCardPrefab();
 
