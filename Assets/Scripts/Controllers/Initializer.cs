@@ -11,15 +11,16 @@ public class Initializer : MonoBehaviour
 
 
     [Header("Controller Dependencies")]
-    [SerializeField] private DeckController             _deckController;
-    [SerializeField] private PlayersController          _playersController;
-    [SerializeField] private CardsControllers           _cardsController;
-    [SerializeField] private TurnController             _turnController;
-    [SerializeField] private TurnValidatorController    _turnValidatorController;
-    [SerializeField] private ScoreController            _scoreController;
-    [SerializeField] private AIController               _aiController;
-    [SerializeField] private SuitController             _suitController;
-    [SerializeField] private RulesController            _rulesController;
+    [SerializeField] private DeckController              _deckController;
+    [SerializeField] private PlayersDataController       _playerDataController;
+    [SerializeField] private PlayersViewerController     _playerViewerController;
+    [SerializeField] private CardsControllers            _cardsController;
+    [SerializeField] private TurnController              _turnController;
+    [SerializeField] private TurnValidatorController     _turnValidatorController;
+    [SerializeField] private ScoreController             _scoreController;
+    [SerializeField] private AIController                _aiController;
+    [SerializeField] private SuitController              _suitController;
+    [SerializeField] private RulesController             _rulesController;
 
     private King_ServiceLocator _serviceLocator;
 
@@ -39,7 +40,9 @@ public class Initializer : MonoBehaviour
 
         _serviceLocator.SetController(_aiController.GetType(), _aiController);
 
-        _serviceLocator.SetController(_playersController.GetType(), _playersController);
+        _serviceLocator.SetController(_playerDataController.GetType(), _playerDataController);
+
+        _serviceLocator.SetController(_playerViewerController.GetType(), _playerViewerController);
 
         _serviceLocator.SetController(_deckController.GetType(), _deckController);
 
@@ -82,18 +85,31 @@ public class Initializer : MonoBehaviour
             _aiController.Init(_serviceLocator);
         }
 
-        InitPlayers();
+        InitDataPlayers();
     }
 
-    private void InitPlayers()
+    private void InitDataPlayers()
     {
-        if(_playersController == null)
+        if(_playerDataController == null)
         {
-            ShowInitError("Players controller not found");
+            ShowInitError("Players data controller not found");
             return;
         }
 
-       _playersController.Init(_serviceLocator);
+       _playerDataController.Init(_serviceLocator);
+
+        InitViewerPlayers();
+    }
+
+    private void InitViewerPlayers()
+    {
+        if (_playerViewerController == null)
+        {
+            ShowInitError("Players viewer controller not found");
+            return;
+        }
+
+        _playerViewerController.Init(_serviceLocator);
 
         InitDeck();
     }

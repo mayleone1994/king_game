@@ -10,7 +10,7 @@ public class TurnController : SubscriberBase, IController
 {
     public static event Action<PlayerData> OnNextPlayer;
 
-    private PlayersController _playersController;
+    private PlayersDataController _playersController;
 
     private TurnValidatorController _turnValidator;
 
@@ -22,7 +22,7 @@ public class TurnController : SubscriberBase, IController
     {
         _serviceLocator = serviceLocator;
 
-        _playersController = _serviceLocator.GetController<PlayersController>();
+        _playersController = _serviceLocator.GetController<PlayersDataController>();
 
         _turnValidator = _serviceLocator.GetController<TurnValidatorController>();
 

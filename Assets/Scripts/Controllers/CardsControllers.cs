@@ -15,7 +15,7 @@ public class CardsControllers : MonoBehaviour, IController
 
     private King_ServiceLocator _serviceLocator;
 
-    private PlayersController _playersController;
+    private PlayersViewerController _playersController;
 
     public void Init(King_ServiceLocator serviceLocator)
     {
@@ -23,7 +23,7 @@ public class CardsControllers : MonoBehaviour, IController
 
         _serviceLocator = serviceLocator;
 
-        _playersController = _serviceLocator.GetController<PlayersController>();
+        _playersController = _serviceLocator.GetController<PlayersViewerController>();
 
         for (int i = 0; i < _playersController.PlayersViewer.Count; i++)
         {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1261265727977129792}
   - component: {fileID: 1261265727977129793}
   m_Layer: 0
-  m_Name: PlayersController
+  m_Name: PlayersDataController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,6 +49,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 201be7bd170610d4c90ddf4113852ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainPlayerIndex: 0
-  _prefabsController: {fileID: 11400000, guid: bbe171e3aa0765e49a4702fc2997dc7f, type: 2}
-  _safeAreaToCreateContainer: {fileID: 0}
