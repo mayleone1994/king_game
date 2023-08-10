@@ -6,13 +6,9 @@ using KingGame;
 public class RulesController : SubscriberBase, IController
 {
     [SerializeField] private RuleDataSO[] _rules;
-
-    private King_ServiceLocator _serviceLocator;
     public void Init(King_ServiceLocator serviceLocator)
     {
         if (_init) return;
-
-        _serviceLocator = serviceLocator;
 
         SubscribeToEvents();
 
