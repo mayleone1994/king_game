@@ -116,11 +116,13 @@ public class Initializer : MonoBehaviour
 
     private void InitDeck()
     {
-        if (_deckController == null || !_deckController.HasDeck())
+        if (_deckController == null)
         {
             ShowInitError("The current deck was not found");
             return;
         }
+
+        _deckController.SetDependency(_roomConfig.RoomDeckData);
 
         _deckController.Init(_serviceLocator);
 

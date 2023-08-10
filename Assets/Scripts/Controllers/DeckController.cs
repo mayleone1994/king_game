@@ -3,41 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckController : MonoBehaviour, IController
+public class DeckController : MonoBehaviour, IController, IDependent<DeckDataSO>
 {
-    [SerializeField] private DeckDataSO _currDeck;
+    private DeckDataSO _deckData;
 
-    private Stack<CardDataSO> _cards;
+    private Stack<CardDataSO> _deck;
 
-    public DeckDataSO CurrDeck => _currDeck;
-
-    public Stack<CardDataSO> Deck => _cards;
+    public Stack<CardDataSO> Deck => _deck;
 
     public void Init(King_ServiceLocator serviceLocator)
     {
         ShuffleDeck();
     }
 
-    public bool HasDeck()
+    public void SetDependency(DeckDataSO dependency)
     {
-        return _currDeck != null;
+        _deckData = dependency;
     }
 
     private void ShuffleDeck()
     {
-        _currDeck.Cards.Shuffle();
+        _deckData.Cards.Shuffle();
 
-        _cards = new Stack<CardDataSO>(_currDeck.Cards);
+        _deck = new Stack<CardDataSO>(_deckData.Cards);
     }
 
     public Sprite GetCurrentDeckVerse()
     {
-        if(_currDeck == null)
+        if(_deckData == null)
         {
             Debug.LogError("Deck information not found");
             return null;
         }
 
-        return _currDeck.VerseSprite;
+        return _deckData.VerseSprite;
     }
 }

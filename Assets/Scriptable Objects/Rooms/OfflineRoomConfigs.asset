@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eaa9ecb2f70a03499bef8cc91a18c27, type: 3}
   m_Name: OfflineRoomConfigs
   m_EditorClassIdentifier: 
-  roomType: 0
+  _roomDeckData: {fileID: 11400000, guid: f1ef9798a86a93843914966d987d7124, type: 2}
+  _roomType: 0
