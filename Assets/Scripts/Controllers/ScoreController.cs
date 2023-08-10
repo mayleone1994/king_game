@@ -1,46 +1,44 @@
-using KingGame;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class ScoreController : SubscriberBase, IController
+namespace KingGame
 {
-    public static event Action<PlayerData, string> OnScoreUpdated;
-
-    public const string DEFAULT_SCORE_TEXT = "Score:";
-
-
-    public void Init()
+    public class ScoreController : SubscriberBase, IController
     {
-        if (_init) return;
+        public static event Action<PlayerData, string> OnScoreUpdated;
 
-        SubscribeToEvents();
+        public const string DEFAULT_SCORE_TEXT = "Score:";
 
-        _init = true;
-    }
+        public void Init()
+        {
+            if (_init) return;
 
-    protected override void SubscribeToEvents()
-    {
-        TurnValidatorController.OnTurnEnded += UpdatePlayerWinnerScore;
-    }
+            SubscribeToEvents();
 
-    protected override void UnsubscribeToEvents()
-    {
-        TurnValidatorController.OnTurnEnded -= UpdatePlayerWinnerScore;
-    }
+            _init = true;
+        }
 
-    private void UpdatePlayerWinnerScore(PlayerData playerData)
-    {
-        // TODO
-        // Set score value according current rule
+        protected override void SubscribeToEvents()
+        {
+            TurnValidatorController.OnTurnEnded += UpdatePlayerWinnerScore;
+        }
 
-        playerData.UpdateScore(-25);
+        protected override void UnsubscribeToEvents()
+        {
+            TurnValidatorController.OnTurnEnded -= UpdatePlayerWinnerScore;
+        }
 
-        int playerScore = playerData.CurrentScore;
+        private void UpdatePlayerWinnerScore(PlayerData playerData)
+        {
+            // TODO
+            // Set score value according current rule
 
-        string scoreText = $"{DEFAULT_SCORE_TEXT} {playerScore}";
+            playerData.UpdateScore(-25);
 
-        OnScoreUpdated?.Invoke(playerData, scoreText);
+            int playerScore = playerData.CurrentScore;
+
+            string scoreText = $"{DEFAULT_SCORE_TEXT} {playerScore}";
+
+            OnScoreUpdated?.Invoke(playerData, scoreText);
+        }
     }
 }

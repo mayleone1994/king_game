@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardHandler : MonoBehaviour
+public class CardHandler : MonoBehaviour, IDependent<SuitController>
 {
     // Dependencies
 
@@ -25,6 +25,7 @@ public class CardHandler : MonoBehaviour
 
     private PlayerViewer _playerViewer;
     private CardData _cardData;
+    private SuitController _suitController;
     public Image ImageComponent => _imageComponent;
     public RaycastTarget RaycastTarget => _raycastTarget;
     public RectTransform CardRect => _cardRect; 
@@ -36,7 +37,12 @@ public class CardHandler : MonoBehaviour
     public CardAnimation CardAnimation => _cardAnimation;
     public CardValidator CardValidator => _cardValidator;
     public CardPosition CardPosition => _cardPosition;
+    public SuitController SuitController => _suitController;
 
+    public void SetDependency(SuitController dependency)
+    {
+        _suitController = dependency;
+    }
     public void Init(CardData cardData, PlayerViewer playerViewer)
     {
         if (_init) return;

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(EventTrigger))]
 
-public class CardInput : SubscriberBase, ICardModule
+public class CardInput : SubscriberBaseMonoBehaviourBase, ICardModule
 {
     private static event Action<CardData> _onCardSelected;
     private static event Action _onCardUnselected;

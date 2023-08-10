@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
-public class PlayerViewer : SubscriberBase
+public class PlayerViewer : SubscriberBaseMonoBehaviourBase
 {
     [Header("Components")]
     [SerializeField] private HorizontalLayoutGroup _cardsOnHand;

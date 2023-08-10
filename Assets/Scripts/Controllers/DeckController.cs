@@ -1,41 +1,36 @@
-using KingGame;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class DeckController : MonoBehaviour, IDependent<DeckDataSO>, IController
+namespace KingGame
 {
-    private DeckDataSO _deckData;
-
-    private Stack<CardDataSO> _deck;
-
-    public Stack<CardDataSO> Deck => _deck;
-
-    public void SetDependency(DeckDataSO dependency)
+    public class DeckController : IDependent<DeckDataSO>, IController
     {
-        _deckData = dependency;
-    }
+        private DeckDataSO _deckData;
 
-    public void Init()
-    {
-        ShuffleDeck();
-    }
+        private Stack<CardDataSO> _deck;
 
-    private void ShuffleDeck()
-    {
-        _deckData.Cards.Shuffle();
+        public Stack<CardDataSO> Deck => _deck;
 
-        _deck = new Stack<CardDataSO>(_deckData.Cards);
-    }
-
-    public Sprite GetCurrentDeckVerse()
-    {
-        if(_deckData == null)
+        public void SetDependency(DeckDataSO dependency)
         {
-            Debug.LogError("Deck information not found");
-            return null;
+            _deckData = dependency;
         }
 
-        return _deckData.VerseSprite;
+        public void Init()
+        {
+            ShuffleDeck();
+        }
+
+        private void ShuffleDeck()
+        {
+            _deckData.Cards.Shuffle();
+
+            _deck = new Stack<CardDataSO>(_deckData.Cards);
+        }
+
+        public UnityEngine.Sprite GetCurrentDeckVerse()
+        {
+            return _deckData.VerseSprite;
+        }
     }
 }

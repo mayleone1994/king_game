@@ -1,10 +1,8 @@
 using KingGame;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardValidator : SubscriberBase, ICardModule
+public class CardValidator : SubscriberBaseMonoBehaviourBase, ICardModule
 {
     private Image _imageComponent;
     private RaycastTarget _raycastTarget;
@@ -18,9 +16,7 @@ public class CardValidator : SubscriberBase, ICardModule
     {
         if (_init) return;
 
-        // TODO: improve this method to avoid something like this:
-        _suitController = FindObjectOfType<SuitController>();
-
+        _suitController = cardHandler.SuitController;
         _imageComponent = cardHandler.ImageComponent;
         _cardData = cardHandler.CardData;
         _raycastTarget = cardHandler.RaycastTarget;
@@ -102,9 +98,6 @@ public class CardValidator : SubscriberBase, ICardModule
 
     private bool HasValidSuit()
     {
-        if (_suitController == null)
-            return false;
-
         return _suitController.IsValidSuitToPlay(_cardData);
     }
 }

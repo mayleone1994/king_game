@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using KingGame;
 
-public class RulesController : SubscriberBase, IController
+public class RulesController : SubscriberBase, IController, IDependent<RuleDataSO[]>
 {
-    [SerializeField] private RuleDataSO[] _rules;
+    private RuleDataSO[] _rulesData;
+
+    public void SetDependency(RuleDataSO[] dependecy)
+    {
+        _rulesData = dependecy;
+    }
+
     public void Init()
     {
         if (_init) return;

@@ -1,11 +1,9 @@
 using KingGame;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class CardViewer : SubscriberBase, ICardModule
+public class CardViewer : SubscriberBaseMonoBehaviourBase, ICardModule
 {
     private CardData _cardData;
 

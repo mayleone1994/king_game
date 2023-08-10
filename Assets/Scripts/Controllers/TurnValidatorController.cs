@@ -1,118 +1,119 @@
-using KingGame;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-public class TurnValidatorController : SubscriberBase, IController
+namespace KingGame
 {
-    private List<CardData> _cardsOnBoard;
-
-    private PlayerData _playerWinner;
-
-    private CardSuit _currentCardSuit;
-
-    public static event Action OnNextPlayer;
-
-    public static event Action<PlayerWinnerData> OnChangePlayerWinner;
-
-    public static event Action<PlayerData> OnTurnEnded;
-
-    public static Action<List<CardData>> OnCardsOnBoardUpdated;
-
-    public void Init()
+    public class TurnValidatorController : SubscriberBase, IController
     {
-        _cardsOnBoard = new List<CardData>();
+        private List<CardData> _cardsOnBoard;
 
-        if (_init) return;
+        private PlayerData _playerWinner;
 
-        SubscribeToEvents();
+        private CardSuit _currentCardSuit;
 
-        _init = true;
-    }
+        public static event Action OnNextPlayer;
 
-    protected override void SubscribeToEvents()
-    {
-        CardActions.OnCardSelected += OnCardSelected;
-        SuitController.OnCurrentSuitChanged += SetCurrentCardSuit;
-    }
+        public static event Action<PlayerWinnerData> OnChangePlayerWinner;
 
-    protected override void UnsubscribeToEvents()
-    {
-        CardActions.OnCardSelected -= OnCardSelected;
-        SuitController.OnCurrentSuitChanged -= SetCurrentCardSuit;
-    }
+        public static event Action<PlayerData> OnTurnEnded;
 
-    private void SetCurrentCardSuit(CardSuit suit)
-    {
-        _currentCardSuit = suit;
-    }
+        public static Action<List<CardData>> OnCardsOnBoardUpdated;
 
-    private void OnCardSelected(CardData cardData)
-    {
-        _cardsOnBoard.Add(cardData);
-        OnCardsOnBoardUpdated?.Invoke(_cardsOnBoard);
-
-        // All players has selected one card at this turn
-        if(_cardsOnBoard.Count == GameConstants.MAX_PLAYERS)
+        public void Init()
         {
-            ValidateCardWinner();
-        } else
-        {
-            // Otherwise, it's next player's turn
-            OnNextPlayer?.Invoke();
+            _cardsOnBoard = new List<CardData>();
+
+            if (_init) return;
+
+            SubscribeToEvents();
+
+            _init = true;
         }
-    }
 
-    private void ValidateCardWinner()
-    {
-        List<CardData> cardsWithTargetSuit = _cardsOnBoard.Where
-            (c => c.Suit == _currentCardSuit).ToList();
-
-        CardData cardWinner = cardsWithTargetSuit.OrderByDescending(c => c.Value).ToList()[0];
-
-        _playerWinner = cardWinner.PlayerData;
-
-        PlayerWinnerData playerWinnerData = new PlayerWinnerData
+        protected override void SubscribeToEvents()
         {
-            playerViewer = cardWinner.CardHandler.PlayerViewer,
-            cardData = cardWinner,
-        };
-
-        OnChangePlayerWinner?.Invoke(playerWinnerData);
-
-        ProcessEndValidation();
-    }
-
-    private void ProcessEndValidation()
-    {
-        Action endCallback = EndValidation;
-
-        for (int i = 0; i < _cardsOnBoard.Count; i++)
-        {
-            bool isLastCardOnList = i == _cardsOnBoard.Count - 1;
-
-            CardActions cardAction = _cardsOnBoard[i].CardHandler.CardAction;
-
-            cardAction.CallAction(CardAction.EXIT, isLastCardOnList ? endCallback : null);
+            CardActions.OnCardSelected += OnCardSelected;
+            SuitController.OnCurrentSuitChanged += SetCurrentCardSuit;
         }
-    }
 
-    private void EndValidation()
-    {
-        _cardsOnBoard.Clear();
+        protected override void UnsubscribeToEvents()
+        {
+            CardActions.OnCardSelected -= OnCardSelected;
+            SuitController.OnCurrentSuitChanged -= SetCurrentCardSuit;
+        }
 
-        SetNewStep();
-    }
+        private void SetCurrentCardSuit(CardSuit suit)
+        {
+            _currentCardSuit = suit;
+        }
 
-    private void SetNewStep()
-    {
-        // TODO:
-        // if the current rule is not ended, set the last winner player to restart the turn
-        // if the current rule has ended, start a new rule and randomize the new player who will
-        // starts the new turn
+        private void OnCardSelected(CardData cardData)
+        {
+            _cardsOnBoard.Add(cardData);
+            OnCardsOnBoardUpdated?.Invoke(_cardsOnBoard);
 
-        OnTurnEnded?.Invoke(_playerWinner);
+            // All players has selected one card at this turn
+            if (_cardsOnBoard.Count == GameConstants.MAX_PLAYERS)
+            {
+                ValidateCardWinner();
+            }
+            else
+            {
+                // Otherwise, it's next player's turn
+                OnNextPlayer?.Invoke();
+            }
+        }
+
+        private void ValidateCardWinner()
+        {
+            List<CardData> cardsWithTargetSuit = _cardsOnBoard.Where
+                (c => c.Suit == _currentCardSuit).ToList();
+
+            CardData cardWinner = cardsWithTargetSuit.OrderByDescending(c => c.Value).ToList()[0];
+
+            _playerWinner = cardWinner.PlayerData;
+
+            PlayerWinnerData playerWinnerData = new PlayerWinnerData
+            {
+                playerViewer = cardWinner.CardHandler.PlayerViewer,
+                cardData = cardWinner,
+            };
+
+            OnChangePlayerWinner?.Invoke(playerWinnerData);
+
+            ProcessEndValidation();
+        }
+
+        private void ProcessEndValidation()
+        {
+            Action endCallback = EndValidation;
+
+            for (int i = 0; i < _cardsOnBoard.Count; i++)
+            {
+                bool isLastCardOnList = i == _cardsOnBoard.Count - 1;
+
+                CardActions cardAction = _cardsOnBoard[i].CardHandler.CardAction;
+
+                cardAction.CallAction(CardAction.EXIT, isLastCardOnList ? endCallback : null);
+            }
+        }
+
+        private void EndValidation()
+        {
+            _cardsOnBoard.Clear();
+
+            SetNewStep();
+        }
+
+        private void SetNewStep()
+        {
+            // TODO:
+            // if the current rule is not ended, set the last winner player to restart the turn
+            // if the current rule has ended, start a new rule and randomize the new player who will
+            // starts the new turn
+
+            OnTurnEnded?.Invoke(_playerWinner);
+        }
     }
 }

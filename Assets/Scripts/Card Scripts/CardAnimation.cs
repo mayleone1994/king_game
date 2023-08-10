@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 using System;
 using KingGame;
 
-public class CardAnimation : SubscriberBase, ICardModule
+public class CardAnimation : SubscriberBaseMonoBehaviourBase, ICardModule
 {
     [SerializeField] private float _cardToBoardTimeAnimation;
     [SerializeField] private float _cardToHandTimeAnimation;

@@ -1,74 +1,75 @@
-using KingGame;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AIController : SubscriberBase, IController, IDependent<RoomConfigSO>
+namespace KingGame
 {
-    private RoomConfigSO _roomConfigData;
-
-    private MinMax _waitTimeForDecision;
-
-    private PlayerData _playerData;
-
-    public void SetDependency(RoomConfigSO dependency)
+    public class AIController : SubscriberBase, IController, IDependent<RoomConfigSO>
     {
-        _roomConfigData = dependency;
-    }
+        private RoomConfigSO _roomConfigData;
 
-    public void Init()
-    {
-        if(_init) return;
+        private MinMax _waitTimeForDecision;
 
-        _waitTimeForDecision = _roomConfigData.AI_Definition_WaitTimeForDecision;
+        private PlayerData _playerData;
 
-        SubscribeToEvents();
+        public void SetDependency(RoomConfigSO dependency)
+        {
+            _roomConfigData = dependency;
+        }
 
-        _init = true;   
-    }
+        public void Init()
+        {
+            if (_init) return;
 
-    protected override void SubscribeToEvents()
-    {
-        TurnController.OnNextPlayer += RunAIPlayer;
-    }
+            _waitTimeForDecision = _roomConfigData.AI_Definition_WaitTimeForDecision;
 
-    protected override void UnsubscribeToEvents()
-    {
-        TurnController.OnNextPlayer -= RunAIPlayer;
-    }
+            SubscribeToEvents();
 
-    private void RunAIPlayer(PlayerData playerData)
-    {
-        if (playerData.IsMainPlayer) return;
+            _init = true;
+        }
 
-        _playerData = playerData;
+        protected override void SubscribeToEvents()
+        {
+            TurnController.OnNextPlayer += RunAIPlayer;
+        }
 
-        SelectCard();
-    }
+        protected override void UnsubscribeToEvents()
+        {
+            TurnController.OnNextPlayer -= RunAIPlayer;
+        }
 
-    private void SelectCard()
-    {
-        // TODO
-        // Stategy to select a card
+        private void RunAIPlayer(PlayerData playerData)
+        {
+            if (playerData.IsMainPlayer) return;
 
-        List<CardData> cardsAvailableToPlay = _playerData.CardsOnHand.Where
-            (c => c.CardHandler.CardValidator.IsValidaSuitToPlay).ToList();
+            _playerData = playerData;
 
-        int randIndex = UnityEngine.Random.Range(0, cardsAvailableToPlay.Count);
+            SelectCard();
+        }
 
-        CardData randomizedCard = cardsAvailableToPlay[randIndex];
+        private void SelectCard()
+        {
+            // TODO
+            // Stategy to select a card
 
-        StartCoroutine(WaitToSelectCard(randomizedCard));
-    }
+            List<CardData> cardsAvailableToPlay = _playerData.CardsOnHand.Where
+                (c => c.CardHandler.CardValidator.IsValidaSuitToPlay).ToList();
 
-    private IEnumerator WaitToSelectCard(CardData cardData)
-    {
-        float randTime = UnityEngine.Random.Range(_waitTimeForDecision.min, _waitTimeForDecision.max);
+            int randIndex = UnityEngine.Random.Range(0, cardsAvailableToPlay.Count);
 
-        yield return new WaitForSeconds(randTime);
+            CardData randomizedCard = cardsAvailableToPlay[randIndex];
 
-        cardData.CardHandler.CardAction.CallAction(CardAction.BOARD);
+            CoroutineHandle_Singleton.Instance.RunCoroutine(WaitToSelectCard, randomizedCard);
+        }
+
+        private IEnumerator WaitToSelectCard(CardData cardData)
+        {
+            float randTime = UnityEngine.Random.Range(_waitTimeForDecision.min, _waitTimeForDecision.max);
+
+            yield return new WaitForSeconds(randTime);
+
+            cardData.CardHandler.CardAction.CallAction(CardAction.BOARD);
+        }
     }
 }

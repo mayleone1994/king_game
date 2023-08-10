@@ -1,77 +1,76 @@
-using KingGame;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using System.Linq.Expressions;
 
-public class TurnController : SubscriberBase, IController, IDependent<PlayersDataController>
+namespace KingGame
 {
-    public static event Action<PlayerData> OnNextPlayer;
-
-    private PlayersDataController _playersDataController;
-
-    private Queue<PlayerData> _playersOrder;
-
-    public void SetDependency(PlayersDataController dependency)
+    public class TurnController : SubscriberBase, IController, IDependent<PlayersDataController>
     {
-        _playersDataController = dependency;
-    }
+        public static event Action<PlayerData> OnNextPlayer;
 
-    public void Init()
-    {
-        UpdatePlayersOrder();
+        private PlayersDataController _playersDataController;
 
-        if (_init) return;
+        private Queue<PlayerData> _playersOrder;
 
-        SubscribeToEvents();
-
-        _init = true;
-    }
-
-    protected override void SubscribeToEvents()
-    {
-        TurnValidatorController.OnNextPlayer += UpdatePlayerTurn;
-        TurnValidatorController.OnTurnEnded += UpdatePlayersOrder;
-    }
-
-    protected override void UnsubscribeToEvents()
-    {
-        TurnValidatorController.OnNextPlayer -= UpdatePlayerTurn;
-        TurnValidatorController.OnTurnEnded -= UpdatePlayersOrder;
-    }
-
-    public void UpdatePlayersOrder(PlayerData playerData = null)
-    {
-        _playersOrder = new();
-
-        PlayerData[] players = _playersDataController.PlayersData;
-
-        int max = players.Length;
-
-        int playerIndex = playerData == null
-            ? UnityEngine.Random.Range(0, max)
-            : playerData.RoomIndex;
-
-        for (int i = 0; i < max; i++)
+        public void SetDependency(PlayersDataController dependency)
         {
-            int relativeIndex = Utils.GetRelativeIndex(i, playerIndex, max);
-
-            _playersOrder.Enqueue(players[relativeIndex]);
+            _playersDataController = dependency;
         }
 
-        List<PlayerData> playerOrderDebug = new(_playersOrder);
+        public void Init()
+        {
+            UpdatePlayersOrder();
 
-        playerOrderDebug.ForEach(p => { Debug.Log($"Player turn order: {p.Name}"); });
+            if (_init) return;
 
-        UpdatePlayerTurn();
-    }
+            SubscribeToEvents();
 
-    private void UpdatePlayerTurn()
-    {
-        PlayerData currentPlayer = _playersOrder.Dequeue();
+            _init = true;
+        }
 
-        OnNextPlayer?.Invoke(currentPlayer);
+        protected override void SubscribeToEvents()
+        {
+            TurnValidatorController.OnNextPlayer += UpdatePlayerTurn;
+            TurnValidatorController.OnTurnEnded += UpdatePlayersOrder;
+        }
+
+        protected override void UnsubscribeToEvents()
+        {
+            TurnValidatorController.OnNextPlayer -= UpdatePlayerTurn;
+            TurnValidatorController.OnTurnEnded -= UpdatePlayersOrder;
+        }
+
+        public void UpdatePlayersOrder(PlayerData playerData = null)
+        {
+            _playersOrder = new();
+
+            PlayerData[] players = _playersDataController.PlayersData;
+
+            int max = players.Length;
+
+            int playerIndex = playerData == null
+                ? UnityEngine.Random.Range(0, max)
+                : playerData.RoomIndex;
+
+            for (int i = 0; i < max; i++)
+            {
+                int relativeIndex = Utils.GetRelativeIndex(i, playerIndex, max);
+
+                _playersOrder.Enqueue(players[relativeIndex]);
+            }
+
+            List<PlayerData> playerOrderDebug = new(_playersOrder);
+
+            playerOrderDebug.ForEach(p => { Debug.Log($"Player turn order: {p.Name}"); });
+
+            UpdatePlayerTurn();
+        }
+
+        private void UpdatePlayerTurn()
+        {
+            PlayerData currentPlayer = _playersOrder.Dequeue();
+
+            OnNextPlayer?.Invoke(currentPlayer);
+        }
     }
 }

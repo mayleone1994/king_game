@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39a5ded230fbbd4dabf737058c32361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardViewer: {fileID: 3966258758933306694}
-  _cardInput: {fileID: 7245636482595259652}
+  _cardViewer: {fileID: 4531716709440476874}
+  _cardInput: {fileID: 7587103051336496869}
   _cardActions: {fileID: 906730927631913825}
   _cardAnimation: {fileID: 5095565135109673285}
   _cardValidator: {fileID: 5579518025228134187}
@@ -153,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2253767230542008346}
   - component: {fileID: 4260768572634435780}
-  - component: {fileID: 3966258758933306694}
+  - component: {fileID: 4531716709440476874}
   - component: {fileID: 498321853689428429}
   m_Layer: 5
   m_Name: CardViewer
@@ -190,7 +190,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3120938040809958314}
   m_CullTransparentMesh: 1
---- !u!114 &3966258758933306694
+--- !u!114 &4531716709440476874
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,8 +390,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3554732737664477319}
+  - component: {fileID: 7587103051336496869}
   - component: {fileID: 3716464415147113452}
-  - component: {fileID: 7245636482595259652}
   - component: {fileID: 6678537372483090998}
   - component: {fileID: 5290105544771243672}
   m_Layer: 5
@@ -421,6 +421,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7587103051336496869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7615253167570169866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27bdbd7562d2464a88476f8f736951f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3716464415147113452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,7 +450,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7245636482595259652}
+        - m_Target: {fileID: 7587103051336496869}
           m_TargetAssemblyTypeName: CardInput, Assembly-CSharp
           m_MethodName: OnBeginDrag
           m_Mode: 0
@@ -454,7 +466,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7245636482595259652}
+        - m_Target: {fileID: 7587103051336496869}
           m_TargetAssemblyTypeName: CardInput, Assembly-CSharp
           m_MethodName: OnDrag
           m_Mode: 0
@@ -470,7 +482,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7245636482595259652}
+        - m_Target: {fileID: 7587103051336496869}
           m_TargetAssemblyTypeName: CardInput, Assembly-CSharp
           m_MethodName: OnDrop
           m_Mode: 1
@@ -482,18 +494,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &7245636482595259652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7615253167570169866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d27bdbd7562d2464a88476f8f736951f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &6678537372483090998
 CanvasRenderer:
   m_ObjectHideFlags: 0
