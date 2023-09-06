@@ -12,17 +12,23 @@ namespace KingGame
 
         private CardSuit _currentCardSuit;
 
+        private int _turnCount;
+
         public static event Action OnNextPlayer;
 
         public static event Action<PlayerWinnerData> OnChangePlayerWinner;
 
         public static event Action<PlayerData> OnTurnEnded;
 
+        public static event Action OnRuleEnded;
+
         public static Action<List<CardData>> OnCardsOnBoardUpdated;
 
         public void Init()
         {
             _cardsOnBoard = new List<CardData>();
+
+            InitTurnCount();
 
             if (_init) return;
 
@@ -41,6 +47,11 @@ namespace KingGame
         {
             CardActions.OnCardSelected -= OnCardSelected;
             SuitController.OnCurrentSuitChanged -= SetCurrentCardSuit;
+        }
+
+        private void InitTurnCount()
+        {
+            _turnCount = GameConstants.CARDS_PER_PLAYER;
         }
 
         private void SetCurrentCardSuit(CardSuit suit)
@@ -103,17 +114,21 @@ namespace KingGame
         {
             _cardsOnBoard.Clear();
 
+            _turnCount--;
+
             SetNewStep();
         }
 
         private void SetNewStep()
         {
-            // TODO:
-            // if the current rule is not ended, set the last winner player to restart the turn
-            // if the current rule has ended, start a new rule and randomize the new player who will
-            // starts the new turn
-
-            OnTurnEnded?.Invoke(_playerWinner);
+            if (_turnCount > 0)
+            {
+                OnTurnEnded?.Invoke(_playerWinner);
+            } else
+            {
+                InitTurnCount();
+                OnRuleEnded?.Invoke();
+            }
         }
     }
 }

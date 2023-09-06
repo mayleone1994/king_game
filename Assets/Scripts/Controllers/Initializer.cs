@@ -11,7 +11,9 @@ public class Initializer : MonoBehaviour
     [SerializeField] private PrefabsControllerSO _prefabsSO;
     [SerializeField] private RuleDataSO[] _rulesSO;
 
+    [Header("Viewer Controllers")]
     [SerializeField] private PlayersViewerController _playerViewerController;
+    [SerializeField] private RulesViewerController _rulesViewerController;
 
 
     private DeckController              _deckController;
@@ -22,7 +24,8 @@ public class Initializer : MonoBehaviour
     private ScoreController             _scoreController;
     private AIController                _aiController;
     private SuitController              _suitController;
-    private RulesController             _rulesController;
+    private RulesDataController         _rulesDataController;
+    private RestartFlowController       _restartFlowController;
 
     private void Awake()
     {
@@ -81,15 +84,6 @@ public class Initializer : MonoBehaviour
         _suitController = new();
         _suitController.Init();
 
-        InitRules();
-    }
-
-    private void InitRules()
-    {
-        _rulesController = new();
-        _rulesController.SetDependency(_rulesSO);
-        _rulesController.Init();
-
         InitScoreController();
     }
 
@@ -138,13 +132,44 @@ public class Initializer : MonoBehaviour
         _turnController = new();
         _turnController.SetDependency(_playerDataController);
         _turnController.Init();
-        // END INIT
+
+        InitRestartFlow();
     }
+
+    private void InitRestartFlow()
+    {
+        _restartFlowController = new();
+        _restartFlowController.SetDependency(_cardsController);
+        _restartFlowController.SetDependency(_deckController);
+        _restartFlowController.Init();
+
+        InitRulesViewer();
+    }
+
+    private void InitRulesViewer()
+    {
+        if (_rulesViewerController == null)
+        {
+            ShowInitError("Rules viewer controller is null");
+            return;
+        }
+        _rulesViewerController.Init();
+
+        InitDataRules();
+    }
+
+    private void InitDataRules()
+    {
+        _rulesDataController = new();
+        _rulesDataController.SetDependency(_rulesSO);
+        _rulesDataController.Init();
+    }
+
+    // END INIT
 
     public void RestartGame()
     {
-        _cardsController?.DestroyCardsInstances();
-        InitDeck();
+        _restartFlowController?.RestartFlow();
     }
 
     private void ShowInitError(string cause)

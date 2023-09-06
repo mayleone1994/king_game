@@ -38,7 +38,7 @@ namespace KingGame
 
     public enum PrefabKey
     {
-        CARD_PREFAB, PLAYERS_CONTAINER_PREFAB
+        CARD_PREFAB, PLAYERS_CONTAINER_PREFAB, RULE_UI_PREFAB
     };
 
     public enum RoomType

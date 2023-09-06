@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3428811290360913392}
   - component: {fileID: 7166438752088391370}
-  - component: {fileID: 2148907970688449527}
+  - component: {fileID: 6773821144225287098}
   m_Layer: 5
   m_Name: Mask
   m_TagString: Untagged
@@ -47,7 +47,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7333965921190676}
   m_CullTransparentMesh: 1
---- !u!114 &2148907970688449527
+--- !u!114 &6773821144225287098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,13 +56,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 7333965921190676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72accf10876c83148b642a5942ee32b5, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.2, g: 0.3019608, b: 0.1254902, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &662457087399011607
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +197,7 @@ GameObject:
   - component: {fileID: 1877544593023333887}
   - component: {fileID: 7372656154381716010}
   - component: {fileID: 3775311533154873640}
+  - component: {fileID: 5414784428396209788}
   m_Layer: 5
   m_Name: Rules_UI
   m_TagString: Untagged
@@ -273,6 +288,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5414784428396209788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847191091957875561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d970d0cdb028642824ee9cdfae1a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _openAnimationTime: 0.5
+  _closeAnimationTime: 0.25
+  _canvasGroup: {fileID: 2938043036064883806}
+  _closeButton: {fileID: 4263828918317420976}
+  _ruleName: {fileID: 4502396607582007457}
+  _ruleDescription: {fileID: 4457550358848072181}
+  _ruleArt: {fileID: 3939223576841584720}
 --- !u!1 &867702710339755006
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,10 +507,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 847191091957875561}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 5414784428396209788}
+        m_TargetAssemblyTypeName: RulesUIViewer, Assembly-CSharp
+        m_MethodName: DestroyThis
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1219,6 +1253,7 @@ GameObject:
   - component: {fileID: 960952532484574062}
   - component: {fileID: 7133636814166642517}
   - component: {fileID: 3140116515868330866}
+  - component: {fileID: 2938043036064883806}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -1313,3 +1348,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &2938043036064883806
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6442751308620785390}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

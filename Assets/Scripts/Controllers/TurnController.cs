@@ -19,8 +19,6 @@ namespace KingGame
 
         public void Init()
         {
-            UpdatePlayersOrder();
-
             if (_init) return;
 
             SubscribeToEvents();
@@ -32,15 +30,22 @@ namespace KingGame
         {
             TurnValidatorController.OnNextPlayer += UpdatePlayerTurn;
             TurnValidatorController.OnTurnEnded += UpdatePlayersOrder;
+            RulesViewerController.OnRulesClosed += RuleViewerClosed;
         }
 
         protected override void UnsubscribeToEvents()
         {
             TurnValidatorController.OnNextPlayer -= UpdatePlayerTurn;
             TurnValidatorController.OnTurnEnded -= UpdatePlayersOrder;
+            RulesViewerController.OnRulesClosed -= RuleViewerClosed;
         }
 
-        public void UpdatePlayersOrder(PlayerData playerData = null)
+        private void RuleViewerClosed()
+        {
+            UpdatePlayersOrder();
+        }
+
+        private void UpdatePlayersOrder(PlayerData playerData = null)
         {
             _playersOrder = new();
 
